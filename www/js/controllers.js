@@ -21,4 +21,13 @@ angular.module('cinetic.controllers', [])
 	{title:"Jurassic Park", year: '1990'},
 	{title:"Lord of the Rings", year: '2000'}
 	];
-}]);
+}])
+
+.controller('aboutCtrl', ['$scope','$state','$ionicPopup','$ionicSideMenuDelegate','$ionicLoading',
+	function($scope, $state, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading)
+	{
+		$scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+			viewData.enableBack = true;
+		});
+
+	}]);
