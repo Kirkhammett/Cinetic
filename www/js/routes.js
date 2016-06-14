@@ -7,7 +7,13 @@ angular.module('cinetic.routes', [])
     url: '/search',
     templateUrl: 'templates/search.html',
     controller: 'searchCtrl'
+    
   })
+
+    .state('details', {
+      url: '/details/:id',
+      templateUrl:'templates/details.html' 
+    })
 
   .state('about', {
     url: '/about',

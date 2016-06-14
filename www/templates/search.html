@@ -1,4 +1,4 @@
-<ion-view view-title="Search movies">
+<ion-view view-title="Search movies and shows">
 <ion-nav-buttons side="left">
         <button ng-cloak class="button button-clear ng-cloak ng-hide" ng-hide="!movies" ng-click="clearSearch()"><i class="icon-left custom-ionicon ion-close-round"><b> Clear</b></i></button>
     </ion-nav-buttons><ion-content>
@@ -6,13 +6,13 @@
 			<label class="item item-input item-floating-label">
 				<i class="icon ion-search placeholder-icon"></i>
 				<input type="text"
-				ng-keyup="$event.keyCode == 13 && getMovies(SearchData)" ng-model="SearchData.title" placeholder="Enter movie name" id="movie-title">
+				ng-keyup="$event.keyCode == 13 && getMovies(SearchData)" ng-model="SearchData.title" placeholder="Enter name.." id="movie-title">
 			</label>
 		</div>
 	</div>
 	<ion-list class="item-icon-right" ng-show="movies">
 		<ion-item class="animated bounce list-card ">
-		<a class="item item-thumbnail-left" ng-repeat="movie in movies" href="#/app/details/{{item.imdbID}}">
+		<a class="item item-thumbnail-left" ng-repeat="movie in movies" href="#/details/{{item.imdbID}}">
 			<img ng-src="{{movie.Poster}}" ng-if="movie.Poster.startsWith('http')">
 			<h2 class="white-wrap">{{movie.Title}}</h2>
 			<p>{{movie.Year}}</p>
