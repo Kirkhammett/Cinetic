@@ -10,3 +10,9 @@
 .item-floating-label {
 	padding-left: 15px !important;
 }
+
+h2.white-wrap
+{
+	white-space: normal;
+	height: 2.6em;
+}

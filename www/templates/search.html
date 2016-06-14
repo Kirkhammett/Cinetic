@@ -1,25 +1,24 @@
 <ion-view view-title="Search movies">
 	<ion-content>
-		<div ng-show="!listflag" class="list">
+		<div ng-hide="movies" class="list">
 			<label class="item item-input item-floating-label">
 				<i class="icon ion-search placeholder-icon"></i>
 				<input type="text"
-				ng-keyup="$event.keyCode == 13 && search()" placeholder="Enter movie name" id="movie-title">
+				ng-keyup="$event.keyCode == 13 && getMovies(SearchData)" ng-model="SearchData.title" placeholder="Enter movie name" id="movie-title">
 			</label>
 		</div>
 	</div>
-	<ion-list ng-show="listflag">
-		<ion-item class="item-remove-animate item-icon-right"
+	<ion-list ng-show="movies">
+		<ion-item class="item-remove-animate item-icon-right">
 		<a class="item item-thumbnail-left" ng-repeat="movie in movies" href="#/app/details/{{item.imdbID}}">
-			<!--  <img ng-src="{{item.Poster}}"> -->
-			<h2>{{movie.title}}</h2>
-			<p>{{movie.year}}</p>
+			<img ng-src="{{movie.Poster}}" ng-if="movie.Poster.startsWith('http')">
+			<h2 class="white-wrap">{{movie.Title}}</h2>
+			<p>{{movie.Year}}</p>
 		</a>
-		<i class="icon ion-arrow-right-b"></i>
 	</ion-item>
 </ion-list>
 </ion-content>
-<div ng-show="listflag" class="bar bar-footer bar-stable">
+<div ng-show="movies" class="bar bar-footer bar-stable">
 	<button class="button button-assertive icon-left ion-close-circled pull-right" ng-click="clearSearch()">Clear</button>
 </div>
 

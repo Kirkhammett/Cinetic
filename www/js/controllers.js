@@ -1,27 +1,38 @@
 angular.module('cinetic.controllers', [])
-.controller('searchCtrl', ['$scope','$q','$http','$state','$ionicPopup', '$ionicSideMenuDelegate', '$ionicLoading', '$timeout', 
-	function($scope, $q, $http, $state, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $timeout)
-	{
+.controller('searchCtrl', function($scope, $q, $http, $state, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $timeout, omdbFactory) 
+{
+		$scope.SearchData = {};
 
-		$scope.listflag = false;
-		$scope.search = function()
+		$scope.getMovies = function(SearchData)
 		{
-			$scope.listflag = true;
+				$ionicLoading.show({
+				template: "Loading data..."
+			})
+			console.log(SearchData.title);
+			var promise = omdbFactory.search(SearchData.title);
+			promise.then(function(results)
+			{
+				$ionicLoading.hide();
+				if(results.Response == "True")
+				{
+					$scope.movies = results.Search;
+					console.log($scope.movies);
+				}
+				else
+				{
+					var alertPopup = $ionicPopup.alert({
+						title: 'Error!',
+						template: 'It doesn\'t look like that search worked. Try again'
+					});
+				}
+			});
 		}
 
 		$scope.clearSearch = function()
 		{
-			$scope.listflag = false;
-		delete $scope.movies;    /// dump search result list
-	}
-
-	$scope.movies = [
-	{title:"Godfather", year: '1970'},
-	{title:"Star Wars", year: '1980'},
-	{title:"Jurassic Park", year: '1990'},
-	{title:"Lord of the Rings", year: '2000'}
-	];
-}])
+			delete $scope.movies;    /// dump search result list
+		}
+	})
 
 .controller('aboutCtrl', ['$scope','$state','$ionicPopup','$ionicSideMenuDelegate','$ionicLoading',
 	function($scope, $state, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading)
