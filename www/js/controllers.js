@@ -15,6 +15,7 @@ angular.module('cinetic.controllers', [])
 				$ionicLoading.hide();
 				if(results.Response == "True")
 				{
+					delete $scope.SearchData.title;
 					$scope.movies = results.Search;
 					console.log($scope.movies);
 				}
@@ -22,7 +23,7 @@ angular.module('cinetic.controllers', [])
 				{
 					var alertPopup = $ionicPopup.alert({
 						title: 'Error!',
-						template: 'It doesn\'t look like that search worked. Try again'
+						template: 'It doesn\'t look like that search worked. Try again or check if you have any misspelled words.'
 					});
 				}
 			});
@@ -30,7 +31,7 @@ angular.module('cinetic.controllers', [])
 
 		$scope.clearSearch = function()
 		{
-			delete $scope.movies;    /// dump search result list
+			delete $scope.movies;    // dump search result list
 		}
 	})
 

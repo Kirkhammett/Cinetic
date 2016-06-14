@@ -13,6 +13,14 @@
 
 h2.white-wrap
 {
+	width:90%;
 	white-space: normal;
-	height: 2.6em;
+	height: auto;
+}
+
+.custom-ionicon
+{
+	font-size:17px;
+	padding-right: 5px;
+	padding-bottom: 5px;
 }

@@ -11,8 +11,7 @@ angular.module('cinetic.routes', [])
 
   .state('about', {
     url: '/about',
-    templateUrl: 'templates/about.html',
-    ontroller: 'aboutCtrl'
+    templateUrl: 'templates/about.html'
   })
 
 
