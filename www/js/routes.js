@@ -9,6 +9,14 @@ angular.module('cinetic.routes', [])
     controller: 'searchCtrl'
   })
 
+  .state('about', {
+    url: '/about',
+    templateUrl: 'templates/about.html',
+    ontroller: 'aboutCtrl'
+  })
+
+
+
   // Each tab has its own nav history stack:
 /*
   .state('search.movie', {
