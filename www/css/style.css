@@ -18,6 +18,14 @@ h2.white-wrap
 	height: auto;
 }
 
+ion-item.white-wrap
+{
+	width:100%;
+	white-space: normal;
+	height: auto;
+	text-align: justify;
+}
+
 .custom-ionicon
 {
 	font-size:17px;
@@ -25,3 +33,11 @@ h2.white-wrap
 	padding-bottom: 5px;
 }
 
+.customParagraph{
+
+}
+i.ion-android-star {
+    font-size: 28px;
+    color: orange;
+   
+}
