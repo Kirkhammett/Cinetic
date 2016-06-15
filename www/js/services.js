@@ -22,6 +22,4 @@ angular.module('cinetic.services', [])
 			return deferred.promise; // return promise to requesting controller to wait for async response from this service
 		}
 	}
-
 }])
-

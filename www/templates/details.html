@@ -1,37 +1,37 @@
 <ion-view view-title="Details">
 	<ion-content padding="true">
-	<div class="list card ">
-		<ion-item >
-		<h1 style="text-align: center;">{{ mDtl.Title }}</h1>			
-		<h3 style="white-space:normal;text-align: center;">{{mDtl.Genre}} | {{mDtl.Year}} | {{mDtl.Rated}} | {{mDtl.Runtime}} | <i class="ion-android-star"></i>{{mDtl.imdbRating}}  </h3>
-	</ion-item>
-	<div class=" item item-image">
-			<img src="http://ia.media-imdb.com/images/M/MV5BMjE2MzQwMTgxN15BMl5BanBnXkFtZTcwMDQzNjk2OQ@@._V1_SX300.jpg" width="500px" height="500px" style="display: block; margin-left: auto; margin-right: auto;">
-		</div>
-	<ion-item class="item customParagraph white-wrap" style="text-align: center;">
-	{{mDtl.Plot}}
-	</ion-item>
-	
-	<ion-item>
-	<p>
-		<b>Creators: </b> {{mDtl.Director}}
-	</p>
-	<p>
-		<b>Actors: </b> {{mDtl.Actors}}
-	</p>
-	<p>
-		<b>Awards: </b> {{mDtl.Awards}}
-	</p>
-	</ion-item>
-	<br>
-	
-<form id="details-form" class="list ">
-	<label class="item item-input">
-    <textarea placeholder="Add a Comment.."></textarea>
-  </label>
-	<a  id="details-save-button" style="font-weight:lighter;" class=" button button-assertive  button-block ">Save</a>
-</form>
+		<div class="list card ">
+			<ion-item >
+				<h1 class="white-wrap">{{ mDtl.Title }}</h1>			
+				<h3 style="white-space:normal;text-align: center;">{{mDtl.Genre}} | {{mDtl.Year}} | {{mDtl.Rated}} | {{mDtl.Runtime}} | <i class="ion-android-star"></i>{{mDtl.imdbRating}}  </h3>
+			</ion-item>
+			<div class=" item item-image">
+				<img src="{{mDtl.Poster}}" style="display: block; margin-left: auto; margin-right: auto;">
+			</div>
+			<ion-item class="item white-wrap">
+				{{mDtl.Plot}}
+			</ion-item>
 
-</div>
-</ion-content>
+			<ion-item class="item">
+				<p class="white-wrap">
+					<b>Creators: </b> {{mDtl.Director}}
+				</p>
+				<p class="white-wrap">
+					<b>Actors: </b> {{mDtl.Actors}}
+				</p>
+				<p class="white-wrap">
+					<b>Awards: </b> {{mDtl.Awards}}
+				</p>
+			</ion-item>
+			<br>
+
+			<form id="details-form" class="list ">
+				<label class="item item-input">
+					<textarea placeholder="Add a Comment.."></textarea>
+				</label>
+				<a  id="details-save-button" style="font-weight:lighter;" class=" button button-assertive  button-block ">Save</a>
+			</form>
+
+		</div>
+	</ion-content>
 </ion-view>

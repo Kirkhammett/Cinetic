@@ -1,7 +1,8 @@
 /* Empty. Add your own CSS if you like */
 .item-floating-label .placeholder-icon {
-	float:right;
+	float:left;
 	padding-right: 18px;
+	margin-left: 5px;
 	position: absolute;
 	bottom: 9px;
 	right:0px;
@@ -14,16 +15,36 @@
 h2.white-wrap
 {
 	width:90%;
+	height:10%;
+	font-size: 1.3;
 	white-space: normal;
-	height: auto;
+	text-align: left;
 }
+
+h1.white-wrap
+{
+	width:100%;
+	height:inherit;
+	font-size: 1.4em;
+	white-space: normal;
+	text-align: center;
+}
+
 
 ion-item.white-wrap
 {
 	width:100%;
 	white-space: normal;
-	height: auto;
-	text-align: justify;
+	font-size: 0.95em;
+	text-align: left;
+}
+
+p.white-wrap
+{
+	width:100%;
+	white-space: normal;
+	font-size: 0.85em;
+	text-align: left;
 }
 
 .custom-ionicon
@@ -33,11 +54,13 @@ ion-item.white-wrap
 	padding-bottom: 5px;
 }
 
-.customParagraph{
 
-}
 i.ion-android-star {
-    font-size: 28px;
-    color: orange;
-   
+	font-size: 28px;
+	color: orange;
+}
+
+.spinner svg {
+  width: 30px !important;
+  height: 30px !important;
 }

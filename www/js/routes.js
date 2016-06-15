@@ -21,8 +21,6 @@ angular.module('cinetic.routes', [])
     templateUrl: 'templates/about.html'
   })
 
-
-
   // Each tab has its own nav history stack:
 /*
   .state('search.movie', {
