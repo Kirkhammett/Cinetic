@@ -4,7 +4,11 @@ angular.module('cinetic.services', [])
 	return {
 		search: function(params) {
 			var deferred = $q.defer();
-			$http.get("http://www.omdbapi.com/?s=" + params) // search omdb data for given title from search bar
+			console.log("Current params are: %O ", params)
+			var searchMethod = params.id ? "i" : "s";
+			var searchString = params.id ? params.id : params.title;
+			console.dir("http://www.omdbapi.com/?" + searchMethod + "=" + searchString)
+			$http.get("http://www.omdbapi.com/?" + searchMethod + "=" + searchString) // search omdb data for given title from search bar
 			.success(function(data)
 			{
 				deferred.resolve(data); // resolve promise with data

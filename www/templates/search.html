@@ -12,7 +12,7 @@
 	</div>
 	<ion-list class="item-icon-right" ng-show="movies">
 		<ion-item class="animated bounce list-card ">
-		<a class="item item-thumbnail-left" ng-repeat="movie in movies" href="#/details/{{item.imdbID}}">
+		<a class="item item-thumbnail-left" ng-repeat="movie in movies" href="#/details/{{movie.imdbID}}">
 			<img ng-src="{{movie.Poster}}" ng-if="movie.Poster.startsWith('http')">
 			<h2 class="white-wrap">{{movie.Title}}</h2>
 			<p>{{movie.Year}}</p>

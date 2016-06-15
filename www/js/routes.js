@@ -12,7 +12,8 @@ angular.module('cinetic.routes', [])
 
     .state('details', {
       url: '/details/:id',
-      templateUrl:'templates/details.html' 
+      templateUrl:'templates/details.html',
+      controller: 'detailsCtrl'
     })
 
   .state('about', {

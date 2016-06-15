@@ -13,10 +13,11 @@ angular.module('cinetic.controllers', [])
 			template: "Loading data..."
 		})
 		console.log(SearchData.title);
-		var promise = omdbFactory.search(SearchData.title);
+		var promise = omdbFactory.search(SearchData);
 		promise.then(function(results)
 		{
 			$ionicLoading.hide();
+			console.log(results);
 			if(results.Response == "True")
 			{
 				delete $scope.SearchData.title;
@@ -46,4 +47,21 @@ angular.module('cinetic.controllers', [])
 			viewData.enableBack = true;
 		});
 
-	}]);
+	}])
+
+.controller('detailsCtrl', function($scope, $state, $stateParams, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, omdbFactory) 
+{
+	$ionicLoading.show({
+			template: "Loading data..."
+		})
+	
+	var promise = omdbFactory.search($stateParams);
+
+	promise.then(function(payload)
+	{
+		$ionicLoading.hide();
+		//console.log(payload);
+		$scope.mDtl = payload;
+	});
+
+});
