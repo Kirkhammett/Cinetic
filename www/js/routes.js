@@ -1,21 +1,23 @@
-angular.module('cinetic.routes', [])
-.config(function($stateProvider, $urlRouterProvider) {
+(function()
+{
+  angular.module('cinetic.routes', [])
+  .config(function($stateProvider, $urlRouterProvider) {
 
-  $stateProvider
-  // setup an abstract state for the tabs directive
-    .state('search', {
+    $stateProvider
+  // setup main state for the app
+  .state('search', {
     url: '/search',
     templateUrl: 'templates/search.html',
     controller: 'searchCtrl'
     
   })
-
-    .state('details', {
-      url: '/details/:id',
-      templateUrl:'templates/details.html',
-      controller: 'detailsCtrl'
-    })
-
+  // details state that shows movies found via id $stateParam
+  .state('details', {
+    url: '/details/:id',
+    templateUrl:'templates/details.html',
+    controller: 'detailsCtrl'
+  })
+  // about authours/app page
   .state('about', {
     url: '/about',
     templateUrl: 'templates/about.html'
@@ -37,3 +39,4 @@ angular.module('cinetic.routes', [])
   $urlRouterProvider.otherwise('/search');
 
 });
+}());
