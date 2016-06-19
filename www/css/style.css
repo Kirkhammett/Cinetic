@@ -1,4 +1,8 @@
 /* Empty. Add your own CSS if you like */
+a {
+	text-decoration: none;
+}
+
 .item-floating-label .placeholder-icon {
 	float:left;
 	padding-right: 18px;
@@ -10,6 +14,20 @@
 
 .item-floating-label {
 	padding-left: 15px !important;
+}
+
+.item-image
+{
+	width:50%;
+	display: inline-block;
+	float: left;
+}
+
+.details-container {
+	float: left;
+	width:50%;
+    display: inline-block;
+    padding: 0% 2%;
 }
 
 h2.white-wrap
@@ -35,7 +53,7 @@ ion-item.white-wrap
 {
 	width:100%;
 	white-space: normal;
-	font-size: 0.95em;
+	font-size: 0.90em;
 	text-align: left;
 }
 
@@ -43,7 +61,7 @@ p.white-wrap
 {
 	width:100%;
 	white-space: normal;
-	font-size: 0.85em;
+	font-size: 0.98em;
 	text-align: left;
 }
 
@@ -56,11 +74,29 @@ p.white-wrap
 
 
 i.ion-android-star {
-	font-size: 28px;
+	font-size: 34px;
 	color: orange;
 }
 
+i.ion-android-star span
+{
+	color: black;
+	font-size: 30px;
+	padding-left: 5px;
+}
+
 .spinner svg {
-  width: 30px !important;
-  height: 30px !important;
+	width: 30px !important;
+	height: 30px !important;
+}
+
+
+@media(max-width:420px){
+	.item-image
+	{
+		width:100%;
+	}
+	.details-container {
+		width: 100%;
+	}
 }

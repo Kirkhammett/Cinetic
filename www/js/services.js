@@ -13,7 +13,7 @@
 			var searchMethod = params.id ? "i" : "s";
 			//also check which search parameter should be sent to the url, id or title
 			var searchString = params.id ? params.id : params.title;
-			//debug search query
+			//debug search query, add + "&plot=full" at the end for full movie plot.
 			console.dir("http://www.omdbapi.com/?" + searchMethod + "=" + searchString)
 			// search omdb data for given title from search bar
 			$http.get("http://www.omdbapi.com/?" + searchMethod + "=" + searchString)
