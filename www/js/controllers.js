@@ -30,7 +30,7 @@
 			//console.log("Attempting to clear search query.");
 			delete $scope.SearchData.title;
 		}
-		// 
+		// main function to return a list of films using the omdbservice factory
 		$scope.getMovies = function(SearchData)
 		{
 			// add random color & spinner to $scope
@@ -100,6 +100,9 @@
 		if(payload.Response == "True")
 		{
 			$ionicLoading.hide();
+			//Runtime is returned as full minutes, we need to convert it to hours and the remainder as minutes
+			payload.Hours =  Math.floor(parseInt(payload.Runtime)/60);
+			payload.Minutes = (parseInt(payload.Runtime) % 60);
 			// debug ajax payload
 			//console.log(payload);
 			$scope.mDtl = payload;
