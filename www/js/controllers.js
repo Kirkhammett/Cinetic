@@ -116,7 +116,8 @@
 		$scope.delegateToSearch = function()
 		{
 			$ionicHistory.nextViewOptions({
-				disableBack: true
+				disableBack: true,
+				historyRoot: true
 			});
 			$state.go('search',{},{location:'replace'});
 		}
