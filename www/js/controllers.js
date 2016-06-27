@@ -30,9 +30,34 @@
 			//console.log("Attempting to clear search query.");
 			delete $scope.SearchData.title;
 		}
+
+		// handle the respective error pop-ups to avoid cluttering
+		$scope.throwError = function(index)
+		{
+			switch(index)
+			{
+				case 1:
+				$ionicPopup.alert({
+					title: 'Hey now!',
+					template: 'Looks like your provided an empty search query, please enter a valid title!',
+					buttons: [{ text: 'Okay', type: 'button-positive' }]
+				});
+				break;
+
+				case 2:
+				$ionicPopup.alert({
+					title: 'Uh-oh!',
+					template: 'It doesn\'t look like that search worked. Try again and check if you have any misspelled words.',
+					buttons: [{ text: 'On it!', type: 'button-positive' }]
+				});
+				break;
+			}
+		}
 		// main function to return a list of films using the omdbservice factory
 		$scope.getMovies = function(SearchData)
 		{
+			// remove focus from the input field
+			document.getElementById('movie-title').blur();
 			// add random color & spinner to $scope
 			$scope.spin  = $scope.getRandomObj($scope.Spinners);
 			$scope.color = $scope.getRandomObj($scope.Colors);
@@ -45,7 +70,12 @@
 			})
 			// debug search query
 			//console.log(SearchData.title);
-
+			if(SearchData.title == undefined)
+			{
+				$ionicLoading.hide();
+				$scope.throwError(1);
+				return;
+			}
 			// put the factory search function in a variable it will return a $q promise, then wait for a response
 			var promise = omdbFactory.search(SearchData);
 			promise.then(function(results)
@@ -53,10 +83,10 @@
 				// hide the loading screen if promise is kept
 				$ionicLoading.hide();
 				// debug payload from ajax call
-				//console.log(results);
+				console.log(results);
 
 			// payload response returns 3 properties, Results, Search and totalResults. Results is a boolean.
-			if(results.Response == "True")
+			if(results.Response === "True")
 			{
 				// if we get a positive response, clear the search query as it is no longer needed
 				$scope.clearQuery();
@@ -67,11 +97,7 @@
 				return;
 			}
 			// if results.Response returned false, alert the user that the search query failed
-			var alertPopup = $ionicPopup.alert({
-				title: 'Uh-oh!',
-				template: 'It doesn\'t look like that search worked. Try again and check if you have any misspelled words.',
-				buttons: [{ text: 'On it!', type: 'button-positive' }]
-			});
+			$scope.throwError(2);
 		});
 		}
 	})
@@ -82,6 +108,20 @@
 	{
 
 	}])
+
+// watchlist controller, handles movies or shows saved by the user
+.controller('watchlistCtrl', ['$scope','$state', '$ionicHistory','$ionicPopup','$ionicSideMenuDelegate','$ionicLoading',
+	function($scope, $state, $ionicHistory, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading)
+	{
+		$scope.delegateToSearch = function()
+		{
+			$ionicHistory.nextViewOptions({
+				disableBack: true
+			});
+			$state.go('search',{},{location:'replace'});
+		}
+	}])
+
 // details controller, handles what happens when we click on a list item generated from the search controller view, takes up an ID state parameter
 .controller('detailsCtrl', function($scope, $state, $stateParams, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, omdbFactory) 
 {	
@@ -97,7 +137,7 @@
 	var promise = omdbFactory.search($stateParams);
 	promise.then(function(payload)
 	{
-		if(payload.Response == "True")
+		if(payload.Response === "True")
 		{
 			$ionicLoading.hide();
 			//Runtime is returned as full minutes, we need to convert it to hours and the remainder as minutes

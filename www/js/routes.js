@@ -23,6 +23,11 @@
     templateUrl: 'templates/about.html'
   })
 
+  .state('watchlist', {
+    url: '/watchlist',
+    templateUrl: 'templates/watchlist.html',
+    controller: 'watchlistCtrl'
+  })
   // Each tab has its own nav history stack:
 /*
   .state('search.movie', {

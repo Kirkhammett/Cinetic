@@ -1,7 +1,7 @@
 <ion-view>
 <ion-nav-title>Details</ion-nav-title>
 	<ion-content padding="true">
-		<div class="list card ">
+		<div ng-cloak class="list card ng-cloak">
 			<ion-item >
 				<h1 class="white-wrap"><a href="http://www.imdb.com/title/{{mDtl.imdbID}}">{{ mDtl.Title }} ({{mDtl.Year}})</a></h1>			
 				<p style="white-space:normal;text-align: center;">{{mDtl.Genre}} | {{mDtl.Rated}} | <i class="icon ion-clock"></i> <span ng-if="mDtl.Hours">{{mDtl.Hours}}h:</span><span>{{mDtl.Minutes}}min </span>| {{mDtl.Released}}
