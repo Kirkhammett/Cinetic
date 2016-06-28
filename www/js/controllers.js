@@ -1,6 +1,23 @@
 (function()
 {
 	angular.module('cinetic.controllers', [])
+	/*
+	.filter('rating', function($sce) {
+		return function(input) {
+			var rating = parseFloat(input) / 2.0;
+			var ratingInt = Math.floor(rating);
+			var html = '';
+			for (var i = 0; i < ratingInt; ++i)
+				html += '<i class="icon ion-android-star"></i>';
+			if (ratingInt != rating)
+				html += '<i class="icon ion-android-star-half"></i>';
+			for (var i = ratingInt + 1; i < 5; ++i)
+				html += '<i class="icon ion-android-star-outline"></i>';
+			return $sce.trustAsHtml(html);
+		}
+	})
+*/
+
 	// search controller, handles everything related to searching the movies the user asks for through the input
 	.controller('searchCtrl', function($scope, $q, $http, $state, $ionicPopup, $ionicScrollDelegate, $ionicSideMenuDelegate, $ionicLoading, $timeout, omdbFactory) 
 	{
@@ -110,8 +127,8 @@
 	}])
 
 // watchlist controller, handles movies or shows saved by the user
-.controller('watchlistCtrl', ['$scope','$state', '$ionicHistory','$ionicPopup','$ionicSideMenuDelegate','$ionicLoading',
-	function($scope, $state, $ionicHistory, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading)
+.controller('watchlistCtrl', ['$scope','$state', '$ionicHistory','$ionicPopup','$ionicSideMenuDelegate','$ionicLoading','omdbFactory',
+	function($scope, $state, $ionicHistory, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, omdbFactory)
 	{
 		$scope.delegateToSearch = function()
 		{
@@ -121,6 +138,27 @@
 			});
 			$state.go('search',{},{location:'replace'});
 		}
+
+		$scope.searchAPI = function()
+		{
+			$ionicLoading.show({
+				template: "Loading data...</br> <ion-spinner icon='ripple'></ion-spinner>"
+				//debug loader
+				//duration:5000
+			})
+
+			var promise = omdbFactory.searchAPI();
+
+			promise.then(function(payload)
+			{
+				$ionicLoading.hide();
+				// debug ajax payload
+				console.log(payload);
+				$scope.Watchlist = payload[0].Search;
+			})
+		}
+		$scope.searchAPI();
+
 	}])
 
 // details controller, handles what happens when we click on a list item generated from the search controller view, takes up an ID state parameter

@@ -16,14 +16,14 @@
 	</div>
 </div>
 <ion-list class="item-icon-right" ng-show="movies">
-	<ion-item class="list-card ">
+	<div class="list-card">
 		<a class="item item-thumbnail-left" ng-repeat="movie in movies" href="#/details/{{movie.imdbID}}">
 			<img src="{{movie.Poster}}" ng-if="movie.Poster.startsWith('http')">
 			<h2 class="white-wrap">{{movie.Title}}</h2>
 			<p>{{movie.Year}}</p>
-			<i class="icon ion-arrow-right-b"></i>
+			<i class="icon ion-chevron-right icon-accessory"></i>
 		</a>
-	</ion-item>
+	</div>
 </ion-list>
 </ion-content>
 <div ng-show="movies" class="bar bar-footer bar-stable">

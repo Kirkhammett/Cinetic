@@ -28,6 +28,26 @@
 			});
 
 			return deferred.promise; // return promise to requesting controller to wait for the async response from this service
+		},
+		searchAPI: function() {
+			var deferred = $q.defer();
+			//debug what is sent through the $stateParams
+			//console.log("Current params are: %O ", params)
+			
+			// search movie API data for list of user movies in the DB
+			$http.get("http://localhost:3000/api/movie")
+			.success(function(data)
+			{
+				console.log(data);
+				deferred.resolve(data); // resolve promise with data
+			})
+			.error(function(msg, code)
+			{
+				deferred.reject(msg); // reject the promise with message
+				$log.error(msg,code); // log error with messange and error code
+			});
+
+			return deferred.promise; // return promise to requesting controller to wait for the async response from this service
 		}
 	}
 }])
