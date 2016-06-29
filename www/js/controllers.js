@@ -195,6 +195,30 @@
 		// if the payload returned False, go back to the search state as the Details view will be empty 
 		$state.go("search")
 	});
+
+	$scope.sendData = function(movieObject)
+	{	
+		$scope.data = {};
+		$scope.data.userId = "Haylo";
+		$scope.data.Search = movieObject;
+
+		console.log($scope.data);
+
+		//console.log(data);
+
+		$ionicLoading.show({
+				template: "Loading data...</br> <ion-spinner icon='ripple'></ion-spinner>"
+				//debug loader
+				//duration:5000
+			})
+		var promise = omdbFactory.postAPI($scope.data);
+		promise.then(function(payload){
+
+				$ionicLoading.hide();
+				console.log('Successfully saved movie');
+
+		})
+	}
 });
 
 }());

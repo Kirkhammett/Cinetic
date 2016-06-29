@@ -55,6 +55,26 @@
 			});
 
 			return deferred.promise; // return promise to requesting controller to wait for the async response from this service
+		},
+		postAPI: function(params){
+			var deferred = $q.defer();
+			console.log("Sending POST: %O ", params);
+			$http({
+				method : 'POST',
+				url    : 'http://localhost:3000/api/movie',
+				data   :  params,
+				headers : {'Content-Type': 'application/json'}
+			})
+			.success(function(data){
+				console.log(data);
+				deferred.resolve(data);
+			})
+			.error(function(msg, code)
+			{
+				deferred.reject(msg); // reject the promise with message
+				$log.error(msg,code); // log error with messange and error code
+			});
+			return deferred.promise;
 		}
 	}
 }])
