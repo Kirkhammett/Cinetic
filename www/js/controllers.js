@@ -1,23 +1,20 @@
 (function()
 {
 	angular.module('cinetic.controllers', [])
-	/*
 	.filter('rating', function($sce) {
 		return function(input) {
-			var rating = parseFloat(input) / 2.0;
+			var rating = parseFloat(input) / 1.0;
 			var ratingInt = Math.floor(rating);
 			var html = '';
 			for (var i = 0; i < ratingInt; ++i)
-				html += '<i class="icon ion-android-star"></i>';
+				html += '<i class="icon ion-ios-star"></i>';
 			if (ratingInt != rating)
-				html += '<i class="icon ion-android-star-half"></i>';
-			for (var i = ratingInt + 1; i < 5; ++i)
-				html += '<i class="icon ion-android-star-outline"></i>';
+				html += '<i class="icon ion-ios-star-half"></i>';
+			for (var i = ratingInt + 1; i < 10; ++i)
+				html += '<i class="icon ion-ios-star-outline"></i>';
 			return $sce.trustAsHtml(html);
 		}
 	})
-*/
-
 	// search controller, handles everything related to searching the movies the user asks for through the input
 	.controller('searchCtrl', function($scope, $q, $http, $state, $ionicPopup, $ionicScrollDelegate, $ionicSideMenuDelegate, $ionicLoading, $timeout, omdbFactory) 
 	{
@@ -130,6 +127,8 @@
 .controller('watchlistCtrl', ['$scope','$state', '$ionicHistory','$ionicPopup','$ionicSideMenuDelegate','$ionicLoading','omdbFactory',
 	function($scope, $state, $ionicHistory, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, omdbFactory)
 	{
+		$scope.Watchlist = false;
+
 		$scope.delegateToSearch = function()
 		{
 			$ionicHistory.nextViewOptions({

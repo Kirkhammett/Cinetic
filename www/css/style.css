@@ -90,6 +90,15 @@ i.ion-android-star span
 	height: 30px !important;
 }
 
+img.watchlisted {
+    max-width: 40vw;
+    max-height: 70vh;
+    border-radius: 4px; 
+    float:left; 
+    margin: 2px 20px 7px 0
+}
+
+
 
 @media(max-width:420px){
 	.item-image

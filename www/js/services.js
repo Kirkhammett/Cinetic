@@ -31,8 +31,6 @@
 		},
 		searchAPI: function() {
 			var deferred = $q.defer();
-			//debug what is sent through the $stateParams
-			//console.log("Current params are: %O ", params)
 
 			var data = {
 				userId: "Heylo"
@@ -44,7 +42,7 @@
 			};
 			
 			// search movie API data for list of user movies in the DB
-			$http.get("http://localhost:3000/api/movie?param=Filip")
+			$http.get("http://localhost:3000/api/movie?param=Haylo")
 			.success(function(data)
 			{
 				console.log(data);
