@@ -3,13 +3,15 @@
 	angular.module('cinetic.controllers', [])
 	.filter('rating', function($sce) {
 		return function(input) {
-			var rating = parseFloat(input) / 1.0;
+			var rating = parseFloat(input);
 			var ratingInt = Math.floor(rating);
 			var html = '';
 			for (var i = 0; i < ratingInt; ++i)
 				html += '<i class="icon ion-ios-star"></i>';
 			if (ratingInt != rating)
 				html += '<i class="icon ion-ios-star-half"></i>';
+			else 
+				html += '<i class="icon ion-ios-star-outline"></i>';
 			for (var i = ratingInt + 1; i < 10; ++i)
 				html += '<i class="icon ion-ios-star-outline"></i>';
 			return $sce.trustAsHtml(html);
