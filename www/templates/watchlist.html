@@ -1,32 +1,32 @@
-<ion-view cache-view="false">
-<ion-nav-title>
-Watchlist
-</ion-nav-title>
-<ion-content ng-cloak padding="true">
-<div ng-show="!Watchlist" style="text-align: center; font-size: 2.5em">
-  <a href='#' ng-click="delegateToSearch()" style="text-decoration: none"><i class="icon ion-plus-circled positive"></i><br/><br/><span style="color: gray">Add movies</span></a>
-</div>
-<ion-list ng-show="Watchlist">
-<div class="list card" ng-repeat="watcher in Watchlist">
-  <a ng-hide="watcher.extended" ng-click="watcher.extended = !watcher.extended" ngModel="watcher.extended = false"  class="item item-thumbnail-left animate-show">
-   <img src="{{watcher.Poster}}" ng-if="watcher.Poster.startsWith('http')">
-   <h2 class="white-wrap">{{watcher.Title}}</h2>
-   <p>{{watcher.Year}}</p>
-   <span>{{watcher.imdbRating}}</span>
-   <span ng-bind-html="watcher.imdbRating | rating"></span>
- </a>
- <div class="animate-show" ng-show="watcher.extended" ng-click="watcher.extended = !watcher.extended">
-    <div class="item item-divider"><h2 class="white-wrap">{{watcher.Title}} ({{watcher.Year}})</h2></div>
-    <div class="col col-33"><img ng-src="{{watcher.Poster}}" ng-cache class="watchlisted"/></div>
-    <div class="col">{{watcher.Plot}}</div>
-  <p>
-    <i class="icon ion-clock"></i> Runtime: <span ng-if="watcher.Hours">{{watcher.Hours}}h:</span><span>{{watcher.Minutes}}min </span>
-  </p>
-  <p>IMDB Rating: <b>{{watcher.imdbRating}}</b></p>
-    <p class="subdued" style="font-size: 1.24em"><span ng-bind-html="watcher.imdbRating | rating"></span></p>
-</div>
-</div>
-</ion-list>
-
-</ion-content>
+<ion-view class="{{blurred}}" cache-view="false">
+  <ion-nav-title>
+    Watchlist
+  </ion-nav-title>
+  <ion-content ng-cloak padding="true">
+    <div ng-show="!Watchlist" style="text-align: center; font-size: 2.5em">
+      <a href='#' ng-click="delegateToSearch()" style="text-decoration: none"><i class="icon ion-plus-circled positive"></i><br/><br/><span style="color: gray">Add movies</span></a>
+    </div>
+    <ion-list ng-show="Watchlist">
+      <div on-hold="toggleClass(watcher)" on-tap="show(watcher)" class="list card" ng-repeat="watcher in Watchlist">
+        <a ng-hide="watcher.extended" ngModel="watcher.extended = false" class="item item-thumbnail-left animate-show">
+          <img src="{{watcher.Poster}}" ng-if="watcher.Poster.startsWith('http')">
+          <h2 class="white-wrap">{{watcher.Title}}</h2>
+          <p>{{watcher.Year}}</p>
+          <span>{{watcher.imdbRating}}</span>
+          <span ng-bind-html="watcher.imdbRating | rating"></span>
+        </a>
+        <div class="animate-show" ng-show="watcher.extended" ng-click="watcher.extended = !watcher.extended">
+          <div class="item item-divider">
+            <h2 class="white-wrap">{{watcher.Title}} ({{watcher.Year}})</h2></div>
+          <div class="col col-33"><img ng-src="{{watcher.Poster}}" ng-cache class="watchlisted" /></div>
+          <div class="col">{{watcher.Plot}}</div>
+          <p>
+            <i class="icon ion-clock"></i> Runtime: <span ng-if="watcher.Hours">{{watcher.Hours}}h:</span><span>{{watcher.Minutes}}min </span>
+          </p>
+          <p>IMDB Rating: <b>{{watcher.imdbRating}}</b></p>
+          <p class="subdued" style="font-size: 1.24em"><span ng-bind-html="watcher.imdbRating | rating"></span></p>
+        </div>
+      </div>
+    </ion-list>
+  </ion-content>
 </ion-view>

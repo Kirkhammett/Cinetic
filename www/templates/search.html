@@ -1,33 +1,29 @@
 <ion-view>
-<ion-nav-title ng-hide="movies">Search</ion-nav-title>
-	<ion-nav-buttons side="left">
-		<button ng-cloak class="button button-clear ng-cloak ng-hide" ng-hide="!movies" ng-click="clearSearch()"><i class="icon-left custom-ionicon ion-close-round"><b> Clear</b></i></button>
-	</ion-nav-buttons><ion-content>
-	<div ng-hide="movies" class="list">
-		<label class="item item-input item-input-wrapper item-floating-label">
-			
-			<input type="text"
-			ng-keyup="$event.keyCode == 13 && getMovies(SearchData)" ng-model="SearchData.title" placeholder="Enter name.." id="movie-title">
-			<i ng-show="!SearchData.title" class="icon ion-search placeholder-icon"></i>
-			<i ng-if="SearchData.title.length"
-			class="icon placeholder-icon ion-android-close"
-			on-touch="clearQuery()"></i>
-		</label>
-	</div>
-</div>
-<ion-list class="item-icon-right" ng-show="movies">
-	<div class="list-card">
-		<a class="item item-thumbnail-left" ng-repeat="movie in movies" href="#/details/{{movie.imdbID}}">
-			<img src="{{movie.Poster}}" ng-if="movie.Poster.startsWith('http')">
-			<h2 class="white-wrap">{{movie.Title}}</h2>
-			<p>{{movie.Year}}</p>
-			<i class="icon ion-chevron-right icon-accessory"></i>
-		</a>
-	</div>
-</ion-list>
-</ion-content>
-<div ng-show="movies" class="bar bar-footer bar-stable">
-	<button class="button button-assertive icon-right ion-chevron-up pull-right" ng-click="scrollTop()">Back to top</button>
-</div>
-
+  <ion-nav-title ng-hide="movies">Search</ion-nav-title>
+  <ion-nav-buttons side="left">
+    <button ng-cloak class="button button-clear ng-cloak ng-hide" ng-hide="!movies" ng-click="clearSearch()"><i class="icon-left custom-ionicon ion-close-round"><b> Clear</b></i></button>
+  </ion-nav-buttons>
+  <ion-content>
+    <div ng-hide="movies" class="list">
+      <label class="item item-input item-input-wrapper item-floating-label">
+        <input type="text" ng-keyup="$event.keyCode == 13 && getMovies(SearchData)" ng-model="SearchData.title" placeholder="Enter name.." id="movie-title">
+        <i ng-show="!SearchData.title" class="icon ion-search placeholder-icon"></i>
+        <i ng-if="SearchData.title.length" class="icon placeholder-icon ion-android-close" on-touch="clearQuery()"></i>
+      </label>
+    </div>
+    </div>
+    <ion-list class="item-icon-right" ng-show="movies">
+      <div class="list-card">
+        <a class="item item-thumbnail-left" ng-repeat="movie in movies" href="#/details/{{movie.imdbID}}">
+          <img src="{{movie.Poster}}" ng-if="movie.Poster.startsWith('http')">
+          <h2 class="white-wrap">{{movie.Title}}</h2>
+          <p>{{movie.Year}}</p>
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </a>
+      </div>
+    </ion-list>
+  </ion-content>
+  <div ng-show="movies" class="bar bar-footer bar-stable">
+    <button class="button button-assertive icon-right ion-chevron-up pull-right" ng-click="scrollTop()">Back to top</button>
+  </div>
 </ion-view>
