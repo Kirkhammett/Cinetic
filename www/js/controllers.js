@@ -54,7 +54,7 @@
           })
           // debug search query
           //console.log(SearchData.title);
-        if (SearchData.title == undefined) {
+        if (SearchData.title === undefined) {
           $ionicLoading.hide();
           constantsFactory.throwWarning("empty");
           return;
@@ -139,6 +139,9 @@
               window.open('http://www.imdb.com/title/' + movie.imdbID + '/', '_system', 'location=yes');
             } else if (index == 2) {
               omdbFactory.deleteAPI("Haylo", movie.imdbID);
+              //console.log($scope.Watchlist.length);
+              $scope.searchAPI();
+              $state.go($state.current, {}, {reload: true});
             }
             return true;
           }
@@ -170,6 +173,7 @@
             // debug ajax payload
             //console.log(payload);
             $scope.Watchlist = payload[0].Search;
+            //console.log("The current scope is %O", $scope.Watchlist)
             return;
           }
           $ionicLoading.hide();

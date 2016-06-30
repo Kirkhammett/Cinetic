@@ -5,11 +5,11 @@ a {
 
 .blur-background
 {
-	-webkit-filter: blur(3px);
-	-moz-filter: blur(3px);
-	-o-filter: blur(3px);
-	-ms-filter: blur(3px);
-	filter: blur(3px);
+	-webkit-filter: blur(4px);
+	-moz-filter: blur(4px);
+	-o-filter: blur(4px);
+	-ms-filter: blur(4px);
+	filter: blur(4px);
 }
 
 .item-floating-label .placeholder-icon {
@@ -100,7 +100,7 @@ i.ion-android-star span
 }
 
 img.watchlisted {
-	max-width: 35vw;
+	max-width: 33vw;
 	border-radius: 4px; 
 	float:left; 
 	margin: 2px 20px 7px 0
@@ -120,11 +120,19 @@ img.watchlisted {
 	}
 	
 	img.watchlisted {
-		max-width: 75vw;
+		max-width: 74vw;
 		border-radius: 4px; 
 	}
 
 	.details-container {
 		width: 100%;
 	}
+}
+
+.item-thumbnail-left > img:first-child, .item-thumbnail-left .item-image, .item-thumbnail-left .item-content > img:first-child, .item-thumbnail-left .item-content .item-image
+{
+	top: 5px;
+	max-height: 91%;
+	border-radius: 2px; 
+
 }

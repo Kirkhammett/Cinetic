@@ -2,11 +2,11 @@
   <ion-nav-title>
     Watchlist
   </ion-nav-title>
-  <ion-content ng-cloak padding="true">
-    <div ng-show="!Watchlist" style="text-align: center; font-size: 2.5em">
+  <ion-content padding="true">
+    <div ng-show="!Watchlist.length" style="text-align: center; font-size: 2.5em">
       <a href='#' ng-click="delegateToSearch()" style="text-decoration: none"><i class="icon ion-plus-circled positive"></i><br/><br/><span style="color: gray">Add movies</span></a>
     </div>
-    <ion-list ng-show="Watchlist">
+    <ion-list ng-show="Watchlist.length">
       <div on-hold="toggleClass(watcher)" on-tap="show(watcher)" class="list card" ng-repeat="watcher in Watchlist">
         <a ng-hide="watcher.extended" ngModel="watcher.extended = false" class="item item-thumbnail-left animate-show">
           <img src="{{watcher.Poster}}" ng-if="watcher.Poster.startsWith('http')">

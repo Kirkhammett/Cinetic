@@ -28,7 +28,7 @@
         },
         searchAPI: function() {
           var deferred = $q.defer();
-
+          //console.log("Retreiving user watchlist");
           var data = {
             userId: "Heylo"
           };
