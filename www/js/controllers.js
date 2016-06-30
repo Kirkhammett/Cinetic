@@ -138,7 +138,7 @@
             if (index == 0) {} else if (index == 1) {
               window.open('http://www.imdb.com/title/' + movie.imdbID + '/', '_system', 'location=yes');
             } else if (index == 2) {
-
+              omdbFactory.deleteAPI("Haylo", movie.imdbID);
             }
             return true;
           }

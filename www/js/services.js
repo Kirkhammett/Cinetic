@@ -53,6 +53,29 @@
 
           return deferred.promise; // return promise to requesting controller to wait for the async response from this service
         },
+
+        deleteAPI:function(params, id){
+          var deferred =  $q.defer();
+           console.log("Sending DELETE: %O ", params);
+           console.log("Sending DELETE: %O ", id);
+            $http({
+            method: 'DELETE',
+            url: 'http://localhost:3000/api/movie/' + id + '?name=' + params,
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            })
+             .success(function(data) {
+              console.log(data);
+              deferred.resolve(data);
+            })
+            .error(function(msg, code) {
+              deferred.resolve(code); // return the promise with and error code
+              $log.error(msg, code); // log error with messange and error code
+            });
+          return deferred.promise;
+        },
+
         postAPI: function(params) {
           var deferred = $q.defer();
           console.log("Sending POST: %O ", params);
