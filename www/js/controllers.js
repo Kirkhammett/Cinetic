@@ -101,11 +101,11 @@
         } else {
           $scope.blurred = "";
         }
-        var templatez = constantsFactory.popTemplate(movie);
+        var popupTemplate = constantsFactory.popTemplate(movie);
 
         var alertPopup = $ionicPopup.alert({
           title: movie.Title + ' (' + movie.Year + ')',
-          template: templatez,
+          template: popupTemplate,
           buttons: [{
             text: 'Okay',
             type: 'button-calm',
@@ -118,8 +118,6 @@
       }
 
       $scope.show = function(movie) {
-
-
         // Show the action sheet
         var hideSheet = $ionicActionSheet.show({
           buttons: [{
