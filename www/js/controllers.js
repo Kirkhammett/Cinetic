@@ -165,15 +165,19 @@
 
         var promise = omdbFactory.searchAPI();
 
-        promise.then(function(payload) {
-          if (payload != -1) {
+        promise.then(function(payload) 
+        {
+          $scope.notFound = true;
+          if (payload != -1 && payload[0].Search.length) {
             $ionicLoading.hide();
             // debug ajax payload
             //console.log(payload);
             $scope.Watchlist = payload[0].Search;
             //console.log("The current scope is %O", $scope.Watchlist)
+            $scope.notFound = false;
             return;
           }
+          $scope.notFound = true;
           $ionicLoading.hide();
         })
       }
