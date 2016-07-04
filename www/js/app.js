@@ -1,5 +1,5 @@
 (function() {
-  var cinetic = angular.module('cinetic', ['ionic', 'cinetic.controllers', 'cinetic.routes', 'cinetic.services', 'cinetic.constants']);
+  var cinetic = angular.module('cinetic', ['ionic','ionic.service.core', 'cinetic.controllers', 'cinetic.routes', 'cinetic.services', 'cinetic.constants']);
 
   cinetic.config(function($ionicConfigProvider, $compileProvider) {
     // change default navbar title to always be centered, even on Android

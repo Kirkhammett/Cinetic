@@ -8,15 +8,17 @@
     <link href="css/style.css" rel="stylesheet">
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+<script src="lib/ionic-platform-web-client/dist/ionic.io.bundle.min.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
+    <!-- Cordova is bootstrapped by ionic-platform-web-client, uncomment this if you remove ionic-platform-web-client... -->
+<!-- <script src="cordova.js"></script> -->
   </head>
 
   <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
   -->
 
-  <body ng-app="cinetic" ng-cloak>
+  <body ng-app="cinetic" ng-cloak="">
     <ion-side-menus enable-menu-with-back-views="false">
       <ion-side-menu-content>
         <ion-nav-bar class="bar-calm">
@@ -37,13 +39,13 @@
         </ion-header-bar>
         <ion-content padding="true" class="side-menu-right">
           <ion-list>
-            <ion-item menu-close href="#/search" class="item-icon-right"> Search movies
+            <ion-item menu-close="" href="#/search" class="item-icon-right"> Search movies
               <i class="icon ion-ios-search-strong"></i>
             </ion-item>
-            <ion-item menu-close href="#/watchlist" class="item-icon-right"> Watchlist
+            <ion-item menu-close="" href="#/watchlist" class="item-icon-right"> Watchlist
               <i class="icon ion-ios-checkmark-outline"></i>
             </ion-item>
-            <ion-item menu-close href="#/about" class="item-icon-right"> About us
+            <ion-item menu-close="" href="#/about" class="item-icon-right"> About us
               <i class="icon ion-ios-people-outline"></i>
             </ion-item>
           </ion-list>
