@@ -98,6 +98,18 @@
         Ionic.Auth.signup(data).then($scope.signupSuccess, $scope.signupFailure);
       }
 
+      $scope.login = function(loginDetails) {
+        Ionic.Auth.login(authProvider, authSettings, loginDetails)
+        .then($scope.authSuccess, $scope.authFailure);
+      };
+
+      $scope.logout = function(loginDetails) {
+        console.log("Logging out!");
+        Ionic.Auth.logout();
+        $scope.delegateToPage('home');
+      };
+
+
       $scope.signupSuccess = function()
       {
         constantsFactory.throwWarning('SignUp');
@@ -116,43 +128,30 @@
 
       $scope.authSuccess = function() {
        // replace dash with the name of your main state
-        console.log("Delegating to Search Page!");
-        $rootScope.showSideMenu = true;
-        $scope.delegateToPage('search');
-      } 
+       console.log("Delegating to Search Page!");
+       $rootScope.showSideMenu = true;
+       $scope.delegateToPage('search');
+     } 
 
-      $scope.delegateToPage = function(stateName)
+     $scope.authFailure = function(errors) {
+      var fullErr = '';
+      //console.dir(errors.response);
+      var obj = JSON.parse(errors.response.response);
+      //console.log(obj.error.message);
+      for (var i=0; i < obj.error.details.length; i++) 
       {
-        $ionicHistory.nextViewOptions({
-         disableBack: true,
-          historyRoot: true
-        });
-       $state.go(stateName, {}, {
-        location: 'replace'
-       });
+        //console.log(obj.error.details[i]);
+        fullErr += obj.error.details[i].error_type + " " + obj.error.details[i].parameter + " ";
       }
+      console.log(fullErr);
+    };
 
-      $scope.authFailure = function(errors) {
-      for (var err in errors) {
-       console.dir(err);
-      // check the error and provide an appropriate message
-      // for your application
-        }
-      };
-
-  $scope.login = function(loginDetails) {
-    Ionic.Auth.login(authProvider, authSettings, loginDetails)
-    .then($scope.authSuccess, $scope.authFailure);
-  };
-
-    $scope.logout = function(loginDetails) {
-      console.log("Logging out!");
-      Ionic.Auth.logout();
-      $scope.delegateToPage('home');
-  };
-
-}
-])
+    $scope.delegateToPage = function(stateName) {
+      $ionicHistory.nextViewOptions({disableBack: true,historyRoot: true});
+      $state.go(stateName, {}, {location: 'replace'});
+    }
+  }
+  ])
 
   // watchlist controller, handles movies or shows saved by the user
   .controller('watchlistCtrl', ['$scope', '$state', '$ionicHistory', '$ionicPopup', '$ionicSideMenuDelegate', '$ionicLoading', '$ionicActionSheet', 'omdbFactory', 'constantsFactory',
@@ -208,32 +207,32 @@
             return true;
           }
         });
-};
+      };
 
-$scope.delegateToSearch = function() {
-  $ionicHistory.nextViewOptions({
-    disableBack: true,
-    historyRoot: true
-  });
-  $state.go('search', {}, {
-    location: 'replace'
-  });
-}
+      $scope.delegateToSearch = function() {
+        $ionicHistory.nextViewOptions({
+          disableBack: true,
+          historyRoot: true
+        });
+        $state.go('search', {}, {
+          location: 'replace'
+        });
+      }
 
-$scope.searchAPI = function() {
-  $ionicLoading.show({
-    template: "Loading data...</br> <ion-spinner icon='ripple'></ion-spinner>"
+      $scope.searchAPI = function() {
+        $ionicLoading.show({
+          template: "Loading data...</br> <ion-spinner icon='ripple'></ion-spinner>"
             //debug loader
             //duration:5000
           })
 
-  var promise = omdbFactory.searchAPI();
+        var promise = omdbFactory.searchAPI();
 
-  promise.then(function(payload) 
-  {
-    $scope.notFound = true;
-    if (payload != -1 && payload[0].Search.length) {
-      $ionicLoading.hide();
+        promise.then(function(payload) 
+        {
+          $scope.notFound = true;
+          if (payload != -1 && payload[0].Search.length) {
+            $ionicLoading.hide();
             // debug ajax payload
             //console.log(payload);
             $scope.Watchlist = payload[0].Search;
@@ -244,10 +243,10 @@ $scope.searchAPI = function() {
           $scope.notFound = true;
           $ionicLoading.hide();
         })
-}
-$scope.searchAPI();
-}
-])
+      }
+      $scope.searchAPI();
+    }
+    ])
 
   // details controller, handles what happens when we click on a list item generated from the search controller view, takes up an ID state parameter
   .controller('detailsCtrl', function($scope, $state, $stateParams, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, omdbFactory, constantsFactory) {
