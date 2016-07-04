@@ -84,12 +84,12 @@
     })
 
   // about controller, can be used to handle anything in the about page
-  .controller('homeCtrl', ['$scope', '$state', '$ionicPopup', '$ionicSideMenuDelegate', '$ionicLoading', '$ionicHistory',
-    function($scope, $state, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $ionicHistory) {
-
+  .controller('homeCtrl', ['$scope', '$state', '$ionicPopup', '$ionicSideMenuDelegate', '$ionicLoading', '$ionicHistory', '$rootScope', 'constantsFactory',
+    function($scope, $state, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $ionicHistory, $rootScope, constantsFactory) {
+      //TODO: Change this to reflect the other views
+      $ionicSideMenuDelegate.canDragContent(false)
       var authProvider = 'basic';
       var authSettings = { 'remember': true };
-
       $scope.loginDetails = {};
 
       $scope.signUp = function(data)
@@ -100,19 +100,26 @@
 
       $scope.signupSuccess = function()
       {
-        console.log("SUccess sign up!");
+        constantsFactory.throwWarning('SignUp');
+        console.log("Successful sign up!");
       }
 
-      $scope.signupFailure = function()
+      $scope.signupFailure = function(err)
       {
-        console.log("Failed sign up!");
+        //console.log("Err count %o", err.errors[0])
+        for(var i=0; i < err.errors.length; i++)
+        {
+          alert("Sign up errors are: " + err.errors[i])
+          console.log(err.errors[i])
+        }
       }
 
       $scope.authSuccess = function() {
        // replace dash with the name of your main state
-        console.log("going search")
-        delegateToPage('search'); 
-    } 
+        console.log("Delegating to Search Page!");
+        $rootScope.showSideMenu = true;
+        $scope.delegateToPage('search');
+      } 
 
       $scope.delegateToPage = function(stateName)
       {
@@ -141,7 +148,6 @@
     $scope.logout = function(loginDetails) {
       console.log("Logging out!");
       Ionic.Auth.logout();
-
       $scope.delegateToPage('home');
   };
 

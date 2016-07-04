@@ -88,6 +88,17 @@
                 }]
               });
               break;
+
+              case "SignUp":
+              $ionicPopup.alert({
+                title: 'Success!',
+                template: 'You\'ve successfully created an account, go ahead and log in',
+                buttons: [{
+                  text: 'On it!',
+                  type: 'button-positive'
+                }]
+              });
+              break;
           }
         }
       }

@@ -45,15 +45,7 @@
           })
         */
         // if none of the above states are matched, use this as the fallback
-        var user = Ionic.User.current();
-        console.log(user.isAuthenticated())
-        if (user.isAuthenticated()) {
-          console.log("Going to search")
-          $urlRouterProvider.otherwise('/search');
-        }        
-        else {
-            console.log("Going home")
-            $urlRouterProvider.otherwise('/home');
-        }     
+        $urlRouterProvider.otherwise('/search');
+     
     });
 }());

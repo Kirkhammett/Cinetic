@@ -8,12 +8,23 @@
     //$compileProvider.imgSrcSanitizationWhitelist(/^\s(https?|file|blob|image|cdvfile):|data:image\//);
   });
 
-  cinetic.run(function($ionicPlatform) {
-    $ionicPlatform.ready(function() {
-      if (window.cordova && window.cordova.plugins.Keyboard) {
+  cinetic.run(function($ionicPlatform,$rootScope,$state) {
+
+    $rootScope.$on('$stateChangeStart', function (event, next, nextParams, fromState) {
+      var user = Ionic.User.current();
+      if (!user.isAuthenticated()) {
+        if (next.name !== 'home') {
+          event.preventDefault();
+          $rootScope.showSideMenu = false;
+          $state.go('home');
+        }
+      }
+    });
+  $ionicPlatform.ready(function() {
+    if (window.cordova && window.cordova.plugins.Keyboard) {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
-        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+  cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 
         // Don't remove this line unless you know what you are doing. It stops the viewport
         // from snapping when text inputs are focused. Ionic handles this internally for
@@ -24,5 +35,5 @@
         StatusBar.styleDefault();
       }
     });
-  })
+})
 }());
