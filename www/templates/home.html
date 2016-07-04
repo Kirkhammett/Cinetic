@@ -1,0 +1,22 @@
+<ion-view>
+  <ion-nav-title >Login</ion-nav-title>
+  <ion-nav-buttons side="left">
+  </ion-nav-buttons>
+  <ion-content>
+<div class="list">
+    <label class="item item-input">
+    <span class="input-label">Username</span>
+    <input ng-model="loginDetails.username" type="text">
+  </label>
+  <label class="item item-input">
+    <span class="input-label">Email</span>
+    <input ng-model="loginDetails.email" type="text">
+  </label>
+  <label class="item item-input">
+    <span class="input-label">Password</span>
+    <input ng-model="loginDetails.password" type="password">
+  </label>
+  <button ng-click="login(loginDetails)"class="button button-positive button-block">Submit</button>
+</div>
+  </ion-content>
+</ion-view>
