@@ -27,6 +27,11 @@
           templateUrl: 'templates/watchlist.html',
           controller: 'watchlistCtrl'
         })
+      .state('home', {
+          url: '/home',
+          templateUrl: 'templates/home.html',
+          controller: 'homeCtrl'
+        })
         // Each tab has its own nav history stack:
         /*
           .state('search.movie', {
@@ -40,7 +45,15 @@
           })
         */
         // if none of the above states are matched, use this as the fallback
-      $urlRouterProvider.otherwise('/search');
-
+        var user = Ionic.User.current();
+        console.log(user.isAuthenticated())
+        if (user.isAuthenticated()) {
+          console.log("Going to search")
+          $urlRouterProvider.otherwise('/search');
+        }        
+        else {
+            console.log("Going home")
+            $urlRouterProvider.otherwise('/home');
+        }     
     });
 }());

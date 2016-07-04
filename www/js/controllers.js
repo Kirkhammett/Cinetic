@@ -1,21 +1,21 @@
 (function() {
   angular.module('cinetic.controllers', [])
-    .filter('rating', function($sce) {
-      return function(input) {
-        var rating = parseFloat(input);
-        var ratingInt = Math.floor(rating);
-        var html = '';
-        for (var i = 0; i < ratingInt; ++i)
-          html += '<i class="icon ion-ios-star"></i>';
-        if (ratingInt != rating)
-          html += '<i class="icon ion-ios-star-half"></i>';
-        else
-          html += '<i class="icon ion-ios-star-outline"></i>';
-        for (var i = ratingInt + 1; i < 10; ++i)
-          html += '<i class="icon ion-ios-star-outline"></i>';
-        return $sce.trustAsHtml(html);
-      }
-    })
+  .filter('rating', function($sce) {
+    return function(input) {
+      var rating = parseFloat(input);
+      var ratingInt = Math.floor(rating);
+      var html = '';
+      for (var i = 0; i < ratingInt; ++i)
+        html += '<i class="icon ion-ios-star"></i>';
+      if (ratingInt != rating)
+        html += '<i class="icon ion-ios-star-half"></i>';
+      else
+        html += '<i class="icon ion-ios-star-outline"></i>';
+      for (var i = ratingInt + 1; i < 10; ++i)
+        html += '<i class="icon ion-ios-star-outline"></i>';
+      return $sce.trustAsHtml(html);
+    }
+  })
     // search controller, handles everything related to searching the movies the user asks for through the input
     .controller('searchCtrl', function($scope, $q, $http, $state, $ionicScrollDelegate, $ionicSideMenuDelegate, $ionicLoading, $timeout, omdbFactory, constantsFactory) {
       // two-way binding for the search strings provided in the search input
@@ -26,14 +26,14 @@
       };
       // returns a random object or array element from a given object/array/list
       $scope.getRandomObj = function(obj) {
-          return obj[Math.floor(Math.random() * obj.length)];
-        }
+        return obj[Math.floor(Math.random() * obj.length)];
+      }
         // dump search result list
-      $scope.clearSearch = function() {
+        $scope.clearSearch = function() {
           delete $scope.movies;
         }
         // dump search result query
-      $scope.clearQuery = function() {
+        $scope.clearQuery = function() {
         //console.log("Attempting to clear search query.");
         delete $scope.SearchData.title;
       }
@@ -48,17 +48,17 @@
         //$scope.combine = $scope.spin.concat($scope.color); 
         // show a loading screen while the async call to the api is happening
         $ionicLoading.show({
-            template: 'Loading data...</br></br> <ion-spinner class="spinner-' + $scope.color + '" icon=' + $scope.spin + '></ion-spinner>',
+          template: 'Loading data...</br></br> <ion-spinner class="spinner-' + $scope.color + '" icon=' + $scope.spin + '></ion-spinner>',
             // if you want to debug the loading screen
             //duration: 5000
           })
           // debug search query
           //console.log(SearchData.title);
-        if (SearchData.title === undefined) {
-          $ionicLoading.hide();
-          constantsFactory.throwWarning("empty");
-          return;
-        }
+          if (SearchData.title === undefined) {
+            $ionicLoading.hide();
+            constantsFactory.throwWarning("empty");
+            return;
+          }
         // put the factory search function in a variable it will return a $q promise, then wait for a response
         var promise = omdbFactory.search(SearchData);
         promise.then(function(results) {
@@ -84,11 +84,69 @@
     })
 
   // about controller, can be used to handle anything in the about page
-  .controller('aboutCtrl', ['$scope', '$state', '$ionicPopup', '$ionicSideMenuDelegate', '$ionicLoading',
-    function($scope, $state, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading) {
+  .controller('homeCtrl', ['$scope', '$state', '$ionicPopup', '$ionicSideMenuDelegate', '$ionicLoading', '$ionicHistory',
+    function($scope, $state, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $ionicHistory) {
 
-    }
-  ])
+      var authProvider = 'basic';
+      var authSettings = { 'remember': true };
+
+      $scope.loginDetails = {};
+
+      $scope.signUp = function(data)
+      {
+        console.log(data);
+        Ionic.Auth.signup(data).then($scope.signupSuccess, $scope.signupFailure);
+      }
+
+      $scope.signupSuccess = function()
+      {
+        console.log("SUccess sign up!");
+      }
+
+      $scope.signupFailure = function()
+      {
+        console.log("Failed sign up!");
+      }
+
+      $scope.authSuccess = function() {
+       // replace dash with the name of your main state
+        console.log("going search")
+        delegateToPage('search'); 
+    } 
+
+      $scope.delegateToPage = function(stateName)
+      {
+        $ionicHistory.nextViewOptions({
+         disableBack: true,
+          historyRoot: true
+        });
+       $state.go(stateName, {}, {
+        location: 'replace'
+       });
+      }
+
+      $scope.authFailure = function(errors) {
+      for (var err in errors) {
+       console.dir(err);
+      // check the error and provide an appropriate message
+      // for your application
+        }
+      };
+
+  $scope.login = function(loginDetails) {
+    Ionic.Auth.login(authProvider, authSettings, loginDetails)
+    .then($scope.authSuccess, $scope.authFailure);
+  };
+
+    $scope.logout = function(loginDetails) {
+      console.log("Logging out!");
+      Ionic.Auth.logout();
+
+      $scope.delegateToPage('home');
+  };
+
+}
+])
 
   // watchlist controller, handles movies or shows saved by the user
   .controller('watchlistCtrl', ['$scope', '$state', '$ionicHistory', '$ionicPopup', '$ionicSideMenuDelegate', '$ionicLoading', '$ionicActionSheet', 'omdbFactory', 'constantsFactory',
@@ -144,32 +202,32 @@
             return true;
           }
         });
-      };
+};
 
-      $scope.delegateToSearch = function() {
-        $ionicHistory.nextViewOptions({
-          disableBack: true,
-          historyRoot: true
-        });
-        $state.go('search', {}, {
-          location: 'replace'
-        });
-      }
+$scope.delegateToSearch = function() {
+  $ionicHistory.nextViewOptions({
+    disableBack: true,
+    historyRoot: true
+  });
+  $state.go('search', {}, {
+    location: 'replace'
+  });
+}
 
-      $scope.searchAPI = function() {
-        $ionicLoading.show({
-          template: "Loading data...</br> <ion-spinner icon='ripple'></ion-spinner>"
+$scope.searchAPI = function() {
+  $ionicLoading.show({
+    template: "Loading data...</br> <ion-spinner icon='ripple'></ion-spinner>"
             //debug loader
             //duration:5000
-        })
+          })
 
-        var promise = omdbFactory.searchAPI();
+  var promise = omdbFactory.searchAPI();
 
-        promise.then(function(payload) 
-        {
-          $scope.notFound = true;
-          if (payload != -1 && payload[0].Search.length) {
-            $ionicLoading.hide();
+  promise.then(function(payload) 
+  {
+    $scope.notFound = true;
+    if (payload != -1 && payload[0].Search.length) {
+      $ionicLoading.hide();
             // debug ajax payload
             //console.log(payload);
             $scope.Watchlist = payload[0].Search;
@@ -180,25 +238,25 @@
           $scope.notFound = true;
           $ionicLoading.hide();
         })
-      }
-      $scope.searchAPI();
-    }
-  ])
+}
+$scope.searchAPI();
+}
+])
 
   // details controller, handles what happens when we click on a list item generated from the search controller view, takes up an ID state parameter
   .controller('detailsCtrl', function($scope, $state, $stateParams, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, omdbFactory, constantsFactory) {
     // prompt a loading screen to the user until the http call fetches the data via id
     $ionicLoading.show({
-        template: "Loading data...</br> <ion-spinner icon='ripple'></ion-spinner>"
+      template: "Loading data...</br> <ion-spinner icon='ripple'></ion-spinner>"
           //debug loader
           //duration:5000
-      })
+        })
       // has the same functionality as the search controller's search method, except this one takes works on the details page and 
       // sends a $stateParam with the movie ID fetched from the search list
-    var promise = omdbFactory.search($stateParams);
-    promise.then(function(payload) {
-      if (payload.Response === "True") {
-        $ionicLoading.hide();
+      var promise = omdbFactory.search($stateParams);
+      promise.then(function(payload) {
+        if (payload.Response === "True") {
+          $ionicLoading.hide();
         //Runtime is returned as full minutes, we need to convert it to hours and the remainder as minutes
         payload.Hours = Math.floor(parseInt(payload.Runtime) / 60);
         payload.Minutes = (parseInt(payload.Runtime) % 60);
@@ -213,12 +271,12 @@
       $state.go("search");
     });
 
-    $scope.sendData = function(movieObject) {
-      $scope.data = {};
-      $scope.data.userId = "Haylo";
-      $scope.data.Search = movieObject;
+      $scope.sendData = function(movieObject) {
+        $scope.data = {};
+        $scope.data.userId = "Haylo";
+        $scope.data.Search = movieObject;
 
-      console.log($scope.data);
+        console.log($scope.data);
 
       //console.log(data);
 
@@ -226,7 +284,7 @@
         template: "Loading data...</br> <ion-spinner icon='ripple'></ion-spinner>"
           //debug loader
           //duration:5000
-      })
+        })
       var promise = omdbFactory.postAPI($scope.data);
       promise.then(function(payload) {
 
