@@ -1,17 +1,39 @@
-<ion-view view-title="Login">
+<ion-view hide-nav-bar="true" class="login-container" view-title="Login">
   <ion-content class="padding">
-      <div class="list list-inset">
-          <label class="item item-input">
-              <input type="text" placeholder="Username" ng-model="loginDetails.username">
-          </label>
-          <label class="item item-input">
-              <input type="text" placeholder="Email" ng-model="loginDetails.email">
-          </label>
-          <label class="item item-input">
-              <input type="password" placeholder="Password" ng-model="loginDetails.password">
-          </label>
-      </div>
-      <button class="button button-block button-calm" ng-click="login(loginDetails)">Login</button>
-      <button class="button button-block button-balanced" ng-click="signUp(loginDetails)">Sign Up</button>
-  </ion-content>
+    <div class="list text-center padding">
+      <img src="img/cineticSlim.png">
+    </div>
+    <div id="container">
+      <label class="login item item-input cinetic-round">
+        <i class="icon ion-ios-person placeholder-icon"></i>
+        <input type="text" placeholder="Username" ng-model="loginDetails.username">
+      </label>
+    </br>
+    <label class="login item item-input cinetic-round">
+    <i class="icon ion-ios-email placeholder-icon"></i>
+      <input type="text" placeholder="Email" ng-model="loginDetails.email">
+    </label>
+  </br>
+  <label class="login item item-input cinetic-round">
+  <i class="icon ion-ios-locked placeholder-icon"></i>
+    <input type="password" placeholder="Password" ng-model="loginDetails.password">
+  </label>
+<div class="footer">
+  <button class="login button button-block button-outline button-dark cinetic-round" ng-click="login(loginDetails)">Login</button>
+  <button class="login button button-block button-outline button-dark cinetic-round" ng-click="signUp(loginDetails)">Sign Up</button>
+</div>
+<div class="row row-no-padding">
+  <div class="col">
+    <button class="button button-clear button-light">
+      Reset password
+    </button>
+  </div>
+  <div class="col text-right">
+    <button class="button button-clear button-light">
+      Random
+    </button>
+  </div>
+</div>
+</div>
+</ion-content>
 </ion-view>

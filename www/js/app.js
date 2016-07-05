@@ -12,6 +12,7 @@
 
     $rootScope.$on('$stateChangeStart', function (event, next, nextParams, fromState) {
       var user = Ionic.User.current();
+      $rootScope.showSideMenu = true;
       if (!user.isAuthenticated()) {
         if (next.name !== 'home') {
           event.preventDefault();

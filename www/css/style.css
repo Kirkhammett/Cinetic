@@ -3,6 +3,112 @@ a {
 	text-decoration: none;
 }
 
+/* OVERRIDE INPUT PLACEHOLDERS */
+/* ---------------------------- */
+
+.login input::-webkit-input-placeholder {
+	color: #fff;
+	opacity: 0.7;
+}
+.login input:-moz-placeholder  {
+	color: #fff;
+	opacity: 0.7;
+}
+.login input:-ms-input-placeholder { /* IE10+ */
+	color: #fff;
+	opacity: 0.7;
+}
+
+.login input, .login select, .login textarea{
+    color: #fff;
+	opacity: 0.85;
+}
+
+.login .placeholder-icon
+{
+	opacity: 0.8;
+	color: #fff;
+}
+
+/* END INPUT OVERRIDE */
+/* ---------------------------- */
+
+
+
+
+/* OVERRIDE BUTTONS */
+/* ---------------------------- */
+
+.login.button.button-dark.button-outline
+{
+	color: white;
+	opacity:0.7;
+}
+
+.login.button.button-dark.button-outline.active, .login.button.button-dark.button-outline.activated
+{
+	background: #fff;
+	opacity: 0.5;
+}
+
+
+/* END OVERRIDE BUTTONS */
+/* ---------------------------- */
+
+
+.footer
+{
+	
+}
+
+.side-menu-sheet
+{
+	background-color: #425270;
+	color: white;
+}
+
+div#container
+{
+	width: 60%; 
+	margin-left:auto; 
+	margin-right: auto; 
+}
+
+.login.item.item-input
+{
+	border: 0;
+	outline: 0;
+	background: transparent;
+	border-bottom: 3px solid rgba(53,159,171,1);
+	box-shadow: 2px 2px 5px rgba(53,159,171,1);
+}
+
+.button-light.active, .button.button-light.activated 
+{
+	color: #fff;
+	opacity: inherit;
+}
+
+.cinetic-round
+{
+	border-radius: 25px;
+}
+
+.login-container {
+	display: -webkit-flex;
+	-webkit-flex-direction: column;
+	height: 100%;
+
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#333e57+35,333e57+52 */
+	background: -moz-linear-gradient(270deg, rgba(53,159,171,1) 0%, rgba(64,193,208,1) 48%, rgba(84,235,158,1) 100%); /* ff3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(53,159,171,1)), color-stop(48%, rgba(64,193,208,1)), color-stop(100%, rgba(84,235,158,1))); /* safari4+,chrome */
+	background: -webkit-linear-gradient(270deg, rgba(53,159,171,1) 0%, rgba(64,193,208,1) 48%, rgba(84,235,158,1) 100%); /* safari5.1+,chrome10+ */
+	background: -o-linear-gradient(270deg, rgba(53,159,171,1) 0%, rgba(64,193,208,1) 48%, rgba(84,235,158,1) 100%); /* opera 11.10+ */
+	background: -ms-linear-gradient(270deg, rgba(53,159,171,1) 0%, rgba(64,193,208,1) 48%, rgba(84,235,158,1) 100%); /* ie10+ */
+	background: linear-gradient(180deg, rgba(53,159,171,1) 0%, rgba(64,193,208,1) 48%, rgba(84,235,158,1) 100%); /* w3c */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#359FAB', endColorstr='#54EB9E',GradientType=0 ); /* ie6-9 */
+}
+
 .blur-background
 {
 	-webkit-filter: blur(4px);
@@ -113,7 +219,8 @@ img.watchlisted {
 	overflow: none;
 }
 
-@media(max-width:420px){
+@media(max-width:420px)
+{
 	.item-image
 	{
 		width:100%;
@@ -126,6 +233,13 @@ img.watchlisted {
 
 	.details-container {
 		width: 100%;
+	}
+
+	div#container
+	{
+		width: 90%; 
+		margin-left:auto; 
+		margin-right: auto; 
 	}
 }
 
