@@ -41,8 +41,10 @@ a {
 
 .login.button.button-dark.button-outline
 {
+	border: 0.1em solid;
+	border-color: #154044;
 	color: white;
-	opacity:0.7;
+	opacity:0.6;
 }
 
 .login.button.button-dark.button-outline.active, .login.button.button-dark.button-outline.activated
