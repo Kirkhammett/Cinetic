@@ -17,7 +17,8 @@
     }
   })
     // search controller, handles everything related to searching the movies the user asks for through the input
-    .controller('searchCtrl', function($scope, $q, $http, $state, $ionicScrollDelegate, $ionicSideMenuDelegate, $ionicLoading, $timeout, omdbFactory, constantsFactory) {
+    .controller('searchCtrl', function($scope, $rootScope, $q, $http, $state, $ionicScrollDelegate, $ionicSideMenuDelegate, $ionicLoading, $timeout, omdbFactory, constantsFactory) {
+      $rootScope.enterPage('block');
       // two-way binding for the search strings provided in the search input
       $scope.SearchData = {};
       // function to scroll to the top of the viewport
@@ -93,18 +94,12 @@
       }
       onPageWillEnter();
       */
-
       //TODO: Change this to reflect the other views
-      $ionicSideMenuDelegate.canDragContent(false)
+      $ionicSideMenuDelegate.canDragContent(false);
       $scope.authType = false;
-      $scope.loginClass = "animate";
-      $scope.signupClass = "";
-      $scope.authT = function(val)
-      {
-        //console.log("Auth was " + $scope.authType)
-        $scope.authType = !$scope.authType;
-        //console.log("Auth now is " + $scope.authType)
-      }
+
+      //change auth type depending on what the user picks
+      $scope.authT = function(val) { $scope.authType = !$scope.authType; }
       var authProvider = 'basic';
       var authSettings = { 'remember': true };
       $scope.loginDetails = {};
@@ -145,9 +140,7 @@
       }
 
       $scope.authSuccess = function() {
-       // replace dash with the name of your main state
        console.log("Delegating to Search Page!");
-       $rootScope.showSideMenu = true;
        $scope.delegateToPage('search');
      } 
 
@@ -166,6 +159,8 @@
 
     $scope.delegateToPage = function(stateName) {
       $ionicHistory.nextViewOptions({disableBack: true,historyRoot: true});
+      $ionicSideMenuDelegate.canDragContent(true);
+      $rootScope.enterPage('block');
       $state.go(stateName, {}, {location: 'replace'});
     }
   }
@@ -174,7 +169,7 @@
   // watchlist controller, handles movies or shows saved by the user
   .controller('watchlistCtrl', ['$scope', '$state', '$ionicHistory', '$ionicPopup', '$ionicSideMenuDelegate', '$ionicLoading', '$ionicActionSheet', 'omdbFactory', 'constantsFactory',
     function($scope, $state, $ionicHistory, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $ionicActionSheet, omdbFactory, constantsFactory) {
-
+      $scope.currentUser = Ionic.User.current().details.username;
       $scope.blurred = "";
       $scope.toggleClass = function(movie) {
         if ($scope.blurred === "") {
@@ -216,11 +211,14 @@
           buttonClicked: function(index) {
             if (index == 0) {} else if (index == 1) {
               window.open('http://www.imdb.com/title/' + movie.imdbID + '/', '_system', 'location=yes');
-            } else if (index == 2) {
-              omdbFactory.deleteAPI("Haylo", movie.imdbID);
+            } else if (index == 2) 
+            {
+              omdbFactory.deleteAPI($scope.currentUser, movie.imdbID);
               //console.log($scope.Watchlist.length);
-              $scope.searchAPI();
-              $state.go($state.current, {}, {reload: true});
+              setTimeout(function(){
+
+                $state.go($state.current, {}, {reload: true});
+              },200);
             }
             return true;
           }
@@ -244,11 +242,9 @@
             //duration:5000
           })
 
-        var promise = omdbFactory.searchAPI();
-
+        var promise = omdbFactory.searchAPI($scope.currentUser);
         promise.then(function(payload) 
         {
-          $scope.notFound = true;
           if (payload != -1 && payload[0].Search.length) {
             $ionicLoading.hide();
             // debug ajax payload
@@ -268,6 +264,7 @@
 
   // details controller, handles what happens when we click on a list item generated from the search controller view, takes up an ID state parameter
   .controller('detailsCtrl', function($scope, $state, $stateParams, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, omdbFactory, constantsFactory) {
+    $scope.currentUser = Ionic.User.current().details.username;
     // prompt a loading screen to the user until the http call fetches the data via id
     $ionicLoading.show({
       template: "Loading data...</br> <ion-spinner icon='ripple'></ion-spinner>"
@@ -296,7 +293,7 @@
 
       $scope.sendData = function(movieObject) {
         $scope.data = {};
-        $scope.data.userId = "Haylo";
+        $scope.data.userId = $scope.currentUser;
         $scope.data.Search = movieObject;
 
         console.log($scope.data);

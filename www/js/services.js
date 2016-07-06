@@ -26,24 +26,13 @@
 
           return deferred.promise; // return promise to requesting controller to wait for the async response from this service
         },
-        searchAPI: function() {
+        searchAPI: function(user) {
           var deferred = $q.defer();
           //console.log("Retreiving user watchlist");
-          var data = {
-            userId: "Heylo"
-          };
-
-          var config = {
-            params: data,
-            headers: {
-              'Accept': 'application/json'
-            }
-          };
-
           // search movie API data for list of user movies in the DB
-          $http.get("http://localhost:3000/api/movie?param=Haylo")
+          $http.get("http://localhost:3000/api/movie?param=" + user)
             .success(function(data) {
-              console.log(data);
+              //console.log(data);
               deferred.resolve(data); // resolve promise with data
             })
             .error(function(msg, code) {
@@ -54,13 +43,13 @@
           return deferred.promise; // return promise to requesting controller to wait for the async response from this service
         },
 
-        deleteAPI:function(params, id){
+        deleteAPI:function(user, id){
           var deferred =  $q.defer();
-           console.log("Sending DELETE: %O ", params);
-           console.log("Sending DELETE: %O ", id);
+           console.dir("Sending DELETE for user: %O ", user);
+           console.dir("Sending DELETE for movie id: %O ", id);
             $http({
             method: 'DELETE',
-            url: 'http://localhost:3000/api/movie/' + id + '?name=' + params,
+            url: 'http://localhost:3000/api/movie/' + id + '?name=' + user,
               headers: {
                 'Content-Type': 'application/json'
               }

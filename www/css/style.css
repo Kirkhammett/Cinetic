@@ -88,6 +88,18 @@ a {
   -ms-animation-fill-mode:forwards; /*IE 10+*/
 }
 
+/* 
+	Angular seems to be greedy, so we must specify this rule to tell angular that
+   	this isn't an ngAnimation, weird bug.
+*/
+.animate.ng-animate 
+{
+  animation:none 0s;
+ -webkit-animation: none 0s; 
+ -moz-animation: none 0s;
+ -o-animation: none 0s;
+ -ms-animation: none 0s;
+}
 
 @keyframes animationFrames{
   0% {

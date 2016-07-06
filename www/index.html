@@ -23,10 +23,10 @@
   <!-- Replace the commented ion-side-menu with the one below it to disable drag on swipe -->
   <!--<ion-side-menu-content drag-content="false"> -->
       <ion-side-menu-content>
-        <ion-nav-bar class="bar-balanced">
+        <ion-nav-bar class="bar-positive">
           <ion-nav-back-button></ion-nav-back-button>
           <ion-nav-buttons side="right">
-            <button ng-if="showSideMenu" menu-toggle="right" class="button button-icon button-clear ion-navicon">
+            <button menu-toggle="right" class="button button-icon button-clear ion-navicon">
             </button>
           </ion-nav-buttons>
 
@@ -36,7 +36,7 @@
 
       </ion-side-menu-content>
       <ion-side-menu side="right" style="background-color:#F6F6F6;">
-        <ion-header-bar class="bar-calm">
+        <ion-header-bar class="bar-positive">
           <h1 class="title">Menu </h1>
         </ion-header-bar>
         <ion-content padding="true" class="side-menu-right">
@@ -50,7 +50,7 @@
             <ion-item menu-close="" href="#/about" class="item-icon-right"> About us
               <i class="icon ion-ios-people-outline"></i>
             </ion-item>
-            <ion-item ng-controller="homeCtrl" ng-if="showSideMenu" menu-close="" ng-click="logout()" href="#" class="item-icon-right"> Log Out
+            <ion-item ng-controller="homeCtrl" menu-close="" ng-click="logout()" href="#" class="item-icon-right"> Log Out
               <i class="icon ion-log-out"></i>
             </ion-item>
           </ion-list>

@@ -9,16 +9,31 @@
   });
 
   cinetic.run(function($ionicPlatform,$rootScope,$state) {
+      // nav-bar will flicker if it is hidden by ionic methods, must use this hack until it's fixed
+      $rootScope.enterPage = function onPageWillEnter(display) 
+      {
+        //console.log("calling display " + display)
+        document.getElementsByTagName("ion-nav-bar")[0].style.display = display;
+      }
 
     $rootScope.$on('$stateChangeStart', function (event, next, nextParams, fromState) {
       var user = Ionic.User.current();
-      $rootScope.showSideMenu = true;
-      if (!user.isAuthenticated()) {
+      $rootScope.enterPage('none');
+      if (!user.isAuthenticated()) 
+      {
         if (next.name !== 'home') {
           event.preventDefault();
-          $rootScope.showSideMenu = false;
+          $rootScope.enterPage('none');
           $state.go('home');
         }
+      }
+      else if (user.isAuthenticated()) {
+        if(next.name === 'home')
+        {
+           event.preventDefault();
+           $state.go('search');
+        }
+         $rootScope.enterPage('block');
       }
     });
   $ionicPlatform.ready(function() {

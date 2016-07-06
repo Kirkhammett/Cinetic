@@ -1,9 +1,9 @@
 <ion-view ng-cloak hide-nav-bar="true" class="login-container" view-title="Login">
-  <ion-content class="login-container" class="padding">
+  <ion-content class="padding">
     <div class="text-center">
       <img class="app-logo" src="img/cineticSlim.png">
     </div>
-    <div ng-show="authType" class="{{signupClass}}" id="container">
+    <div ng-if="authType" class="animate" id="container">
       <label class="login item item-input cinetic-round">
         <i class="icon ion-ios-person placeholder-icon"></i>
         <input type="text" placeholder="Username" ng-model="signupDetails.username">
@@ -27,8 +27,7 @@
       </div>
     </div>
 
-
-    <div ng-show="!authType" class="{{loginClass}}" id="container">
+    <div ng-if="!authType" class="animate" id="container">
       <label class="login item item-input cinetic-round">
         <i class="icon ion-ios-email placeholder-icon"></i>
         <input type="text" placeholder="Email" ng-model="loginDetails.email">
@@ -43,7 +42,7 @@
         <span>Don't have an account? Sing up!</span>
       </div>
       <div class="col text-center">
-        <button class="login button button-outline button-white center" ng-click="authT(authType)">Sing Up!</button>
+        <button class="login button button-outline button-white center" ng-click="authT(authType)">Sign Up!</button>
       </div>
     </div>
     <!-- <div class="row row-no-padding">
@@ -59,6 +58,5 @@
   </div>
 </div>
 -->
-    </div>
   </ion-content>
 </ion-view>
