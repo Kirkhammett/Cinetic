@@ -13,8 +13,8 @@
     </div>
     </div>
     <ion-list class="item-icon-right" ng-show="movies">
-      <div class="list-card">
-        <a class="item item-thumbnail-left" ng-repeat="movie in movies" href="#/details/{{movie.imdbID}}">
+      <div class="list card" ng-repeat="movie in movies">
+        <a class="item item-thumbnail-left" href="#/details/{{movie.imdbID}}">
           <img src="{{movie.Poster}}" ng-if="movie.Poster.startsWith('http')">
           <h2 class="white-wrap">{{movie.Title}}</h2>
           <p>{{movie.Year}}</p>

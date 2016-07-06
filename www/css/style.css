@@ -20,7 +20,7 @@ a {
 }
 
 .login input, .login select, .login textarea{
-    color: #fff;
+	color: #fff;
 	opacity: 0.85;
 }
 
@@ -47,6 +47,14 @@ a {
 	opacity:0.6;
 }
 
+.login.button.button-white.button-outline
+{
+	border: 0.1em solid;
+	border-color: #fff;
+	color: white;
+	opacity:0.6;
+}
+
 .login.button.button-dark.button-outline.active, .login.button.button-dark.button-outline.activated
 {
 	background: #fff;
@@ -57,198 +65,322 @@ a {
 /* END OVERRIDE BUTTONS */
 /* ---------------------------- */
 
+.animate{
+  animation: animationFrames ease 1s;
+  animation-iteration-count: 1;
+  transform-origin: 50% 50%;
+  animation-fill-mode:forwards; /*when the spec is finished*/
+  -webkit-animation: animationFrames ease 1s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-transform-origin: 50% 50%;
+  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/ 
+  -moz-animation: animationFrames ease 1s;
+  -moz-animation-iteration-count: 1;
+  -moz-transform-origin: 50% 50%;
+  -moz-animation-fill-mode:forwards; /*FF 5+*/
+  -o-animation: animationFrames ease 1s;
+  -o-animation-iteration-count: 1;
+  -o-transform-origin: 50% 50%;
+  -o-animation-fill-mode:forwards; /*Not implemented yet*/
+  -ms-animation: animationFrames ease 1s;
+  -ms-animation-iteration-count: 1;
+  -ms-transform-origin: 50% 50%;
+  -ms-animation-fill-mode:forwards; /*IE 10+*/
+}
 
-.footer
+
+@keyframes animationFrames{
+  0% {
+    opacity:0;
+    transform:  translate(0px,-25px)  ;
+  }
+  100% {
+    opacity:1;
+    transform:  translate(0px,0px)  ;
+  }
+}
+
+@-moz-keyframes animationFrames{
+  0% {
+    opacity:0;
+    -moz-transform:  translate(0px,-25px)  ;
+  }
+  100% {
+    opacity:1;
+    -moz-transform:  translate(0px,0px)  ;
+  }
+}
+
+@-webkit-keyframes animationFrames {
+  0% {
+    opacity:0;
+    -webkit-transform:  translate(0px,-25px)  ;
+  }
+  100% {
+    opacity:1;
+    -webkit-transform:  translate(0px,0px)  ;
+  }
+}
+
+@-o-keyframes animationFrames {
+  0% {
+    opacity:0;
+    -o-transform:  translate(0px,-25px)  ;
+  }
+  100% {
+    opacity:1;
+    -o-transform:  translate(0px,0px)  ;
+  }
+}
+
+@-ms-keyframes animationFrames {
+  0% {
+    opacity:0;
+    -ms-transform:  translate(0px,-25px)  ;
+  }
+  100% {
+    opacity:1;
+    -ms-transform:  translate(0px,0px)  ;
+  }
+}
+
+
+
+
+
+
+img.app-logo
 {
-	
-}
-
-.side-menu-sheet
-{
-	background-color: #425270;
-	color: white;
-}
-
-div#container
-{
-	width: 60%; 
-	margin-left:auto; 
-	margin-right: auto; 
-}
-
-.login.item.item-input
-{
-	border: 0;
-	outline: 0;
-	background: transparent;
-	border-bottom: 3px solid rgba(53,159,171,1);
-	box-shadow: 2px 2px 5px rgba(53,159,171,1);
-}
-
-.button-light.active, .button.button-light.activated 
-{
-	color: #fff;
-	opacity: inherit;
-}
-
-.cinetic-round
-{
-	border-radius: 25px;
-}
-
-.login-container {
-	display: -webkit-flex;
-	-webkit-flex-direction: column;
-	height: 100%;
-
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#333e57+35,333e57+52 */
-	background: -moz-linear-gradient(270deg, rgba(53,159,171,1) 0%, rgba(64,193,208,1) 48%, rgba(84,235,158,1) 100%); /* ff3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(53,159,171,1)), color-stop(48%, rgba(64,193,208,1)), color-stop(100%, rgba(84,235,158,1))); /* safari4+,chrome */
-	background: -webkit-linear-gradient(270deg, rgba(53,159,171,1) 0%, rgba(64,193,208,1) 48%, rgba(84,235,158,1) 100%); /* safari5.1+,chrome10+ */
-	background: -o-linear-gradient(270deg, rgba(53,159,171,1) 0%, rgba(64,193,208,1) 48%, rgba(84,235,158,1) 100%); /* opera 11.10+ */
-	background: -ms-linear-gradient(270deg, rgba(53,159,171,1) 0%, rgba(64,193,208,1) 48%, rgba(84,235,158,1) 100%); /* ie10+ */
-	background: linear-gradient(180deg, rgba(53,159,171,1) 0%, rgba(64,193,208,1) 48%, rgba(84,235,158,1) 100%); /* w3c */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#359FAB', endColorstr='#54EB9E',GradientType=0 ); /* ie6-9 */
-}
-
-.blur-background
-{
-	-webkit-filter: blur(4px);
-	-moz-filter: blur(4px);
-	-o-filter: blur(4px);
-	-ms-filter: blur(4px);
-	filter: blur(4px);
-}
-
-.item-floating-label .placeholder-icon {
-	float:left;
-	padding-right: 18px;
-	margin-left: 5px;
-	position: absolute;
-	bottom: 9px;
-	right:0px;
-}
-
-.item-floating-label {
-	padding-left: 15px !important;
-}
-
-.item-image
-{
-	width:50%;
-	display: inline-block;
-	float: left;
-}
-
-.details-container {
-	float: left;
-	width:50%;
-	display: inline-block;
-	padding: 0% 2%;
-}
-
-h2.white-wrap
-{
-	width:90%;
-	height:10%;
-	font-size: 1.3;
-	white-space: normal;
-	text-align: left;
-}
-
-h1.white-wrap
-{
-	width:100%;
-	height:inherit;
-	font-size: 1.4em;
-	white-space: normal;
-	text-align: center;
-}
-
-
-ion-item.white-wrap
-{
-	width:100%;
-	white-space: normal;
-	font-size: 0.90em;
-	text-align: left;
-}
-
-p.white-wrap
-{
-	width:100%;
-	white-space: normal;
-	font-size: 0.98em;
-	text-align: left;
-}
-
-.custom-ionicon
-{
-	font-size:17px;
-	padding-right: 5px;
-	padding-bottom: 5px;
-}
-
-
-i.ion-android-star {
-	font-size: 34px;
-	color: orange;
-}
-
-i.ion-android-star span
-{
-	color: black;
-	font-size: 30px;
-	padding-left: 5px;
-}
-
-.spinner svg {
-	width: 30px !important;
-	height: 30px !important;
-}
-
-img.watchlisted {
-	max-width: 33vw;
-	border-radius: 4px; 
-	float:left; 
-	margin: 2px 20px 7px 0
-}
-
-.forceTouch .popup
-{
-	width: 80vw;
+	width: 45%;
 	height: auto;
-	overflow: none;
 }
 
-@media(max-width:420px)
-{
-	.item-image
-	{
-		width:100%;
-	}
-	
-	img.watchlisted {
-		max-width: 74vw;
-		border-radius: 4px; 
+.strike {
+	display: block;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap; 
+}
+
+.strike > span {
+	position: relative;
+	display: inline-block;
+	color: white;
+	opacity:0.6;
+}
+
+.strike > span:before,
+.strike > span:after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	width: 100vh;
+	height: 2px;
+	background: white;
+	opacity:0.6;}
+
+	.strike > span:before {
+		right: 100%;
+		margin-right: 5px;
 	}
 
-	.details-container {
-		width: 100%;
+	.strike > span:after {
+		left: 100%;
+		margin-left: 5px;
+	}
+
+
+	.footer
+	{
+		background: transparent;
+	}
+
+	.side-menu-sheet
+	{
+		background-color: #425270;
+		color: white;
 	}
 
 	div#container
 	{
-		width: 90%; 
+		width: 60%; 
 		margin-left:auto; 
 		margin-right: auto; 
 	}
-}
 
-.item-thumbnail-left > img:first-child, .item-thumbnail-left .item-image, .item-thumbnail-left .item-content > img:first-child, .item-thumbnail-left .item-content .item-image
-{
-	top: 5px;
-	max-height: 91%;
-	border-radius: 2px; 
+	.login.item.item-input
+	{
+		border: 0;
+		outline: 0;
+		background: transparent;
+		border-bottom: 3px solid rgba(53,159,171,1);
+		box-shadow: 2px 2px 5px rgba(53,159,171,1);
+	}
 
-}
+	.button-light.active, .button.button-light.activated 
+	{
+		color: #fff;
+		opacity: inherit;
+	}
+
+	.cinetic-round
+	{
+		border-radius: 25px;
+	}
+
+	.login-container {
+		display: -webkit-flex;
+		-webkit-flex-direction: column;
+		height: 100%;
+
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#333e57+35,333e57+52 */
+		background: -moz-linear-gradient(270deg, rgba(53,159,171,1) 0%, rgba(64,193,208,1) 48%, rgba(84,235,158,1) 100%); /* ff3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(53,159,171,1)), color-stop(48%, rgba(64,193,208,1)), color-stop(100%, rgba(84,235,158,1))); /* safari4+,chrome */
+		background: -webkit-linear-gradient(270deg, rgba(53,159,171,1) 0%, rgba(64,193,208,1) 48%, rgba(84,235,158,1) 100%); /* safari5.1+,chrome10+ */
+		background: -o-linear-gradient(270deg, rgba(53,159,171,1) 0%, rgba(64,193,208,1) 48%, rgba(84,235,158,1) 100%); /* opera 11.10+ */
+		background: -ms-linear-gradient(270deg, rgba(53,159,171,1) 0%, rgba(64,193,208,1) 48%, rgba(84,235,158,1) 100%); /* ie10+ */
+		background: linear-gradient(180deg, rgba(53,159,171,1) 0%, rgba(64,193,208,1) 48%, rgba(84,235,158,1) 100%); /* w3c */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#359FAB', endColorstr='#54EB9E',GradientType=0 ); /* ie6-9 */
+	}
+
+	.blur-background
+	{
+		-webkit-filter: blur(4px);
+		-moz-filter: blur(4px);
+		-o-filter: blur(4px);
+		-ms-filter: blur(4px);
+		filter: blur(4px);
+	}
+
+	.item-floating-label .placeholder-icon {
+		float:left;
+		padding-right: 18px;
+		margin-left: 5px;
+		position: absolute;
+		bottom: 9px;
+		right:0px;
+	}
+
+	.item-floating-label {
+		padding-left: 15px !important;
+	}
+
+	.item-image
+	{
+		width:50%;
+		display: inline-block;
+		float: left;
+	}
+
+	.details-container {
+		float: left;
+		width:50%;
+		display: inline-block;
+		padding: 0% 2%;
+	}
+
+	h2.white-wrap
+	{
+		width:90%;
+		height:10%;
+		font-size: 1.3;
+		white-space: normal;
+		text-align: left;
+	}
+
+	h1.white-wrap
+	{
+		width:100%;
+		height:inherit;
+		font-size: 1.4em;
+		white-space: normal;
+		text-align: center;
+	}
+
+
+	ion-item.white-wrap
+	{
+		width:100%;
+		white-space: normal;
+		font-size: 0.90em;
+		text-align: left;
+	}
+
+	p.white-wrap
+	{
+		width:100%;
+		white-space: normal;
+		font-size: 0.98em;
+		text-align: left;
+	}
+
+	.custom-ionicon
+	{
+		font-size:17px;
+		padding-right: 5px;
+		padding-bottom: 5px;
+	}
+
+
+	i.ion-android-star {
+		font-size: 34px;
+		color: orange;
+	}
+
+	i.ion-android-star span
+	{
+		color: black;
+		font-size: 30px;
+		padding-left: 5px;
+	}
+
+	.spinner svg {
+		width: 30px !important;
+		height: 30px !important;
+	}
+
+	img.watchlisted {
+		max-width: 33vw;
+		border-radius: 4px; 
+		float:left; 
+		margin: 2px 20px 7px 0
+	}
+
+	.forceTouch .popup
+	{
+		width: 80vw;
+		height: auto;
+		overflow: none;
+	}
+
+	@media(max-width:420px)
+	{
+		.item-image
+		{
+			width:100%;
+		}
+
+		img.watchlisted {
+			max-width: 74vw;
+			border-radius: 4px; 
+		}
+
+		.details-container {
+			width: 100%;
+		}
+
+		div#container
+		{
+			width: 90%; 
+			margin-left:auto; 
+			margin-right: auto; 
+		}
+	}
+
+	.item-thumbnail-left > img:first-child, .item-thumbnail-left .item-image, .item-thumbnail-left .item-content > img:first-child, .item-thumbnail-left .item-content .item-image
+	{
+		top: 5px;
+		max-height: 91%;
+		border-radius: 2px; 
+
+	}

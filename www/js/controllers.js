@@ -86,11 +86,29 @@
   // about controller, can be used to handle anything in the about page
   .controller('homeCtrl', ['$scope', '$state', '$ionicPopup', '$ionicSideMenuDelegate', '$ionicLoading', '$ionicHistory', '$rootScope', 'constantsFactory',
     function($scope, $state, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $ionicHistory, $rootScope, constantsFactory) {
+      /*
+      function onPageWillEnter() 
+      {
+        document.getElementsByTagName("ion-nav-bar")[0].style.display = "none";
+      }
+      onPageWillEnter();
+      */
+
       //TODO: Change this to reflect the other views
       $ionicSideMenuDelegate.canDragContent(false)
+      $scope.authType = false;
+      $scope.loginClass = "animate";
+      $scope.signupClass = "";
+      $scope.authT = function(val)
+      {
+        //console.log("Auth was " + $scope.authType)
+        $scope.authType = !$scope.authType;
+        //console.log("Auth now is " + $scope.authType)
+      }
       var authProvider = 'basic';
       var authSettings = { 'remember': true };
       $scope.loginDetails = {};
+      $scope.signupDetails = {};
 
       $scope.signUp = function(data)
       {

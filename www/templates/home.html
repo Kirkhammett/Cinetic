@@ -1,28 +1,52 @@
-<ion-view hide-nav-bar="true" class="login-container" view-title="Login">
-  <ion-content class="padding">
-    <div class="list text-center padding">
-      <img src="img/cineticSlim.png">
+<ion-view ng-cloak hide-nav-bar="true" class="login-container" view-title="Login">
+  <ion-content class="login-container" class="padding">
+    <div class="text-center">
+      <img class="app-logo" src="img/cineticSlim.png">
     </div>
-    <div id="container">
+    <div ng-show="authType" class="{{signupClass}}" id="container">
       <label class="login item item-input cinetic-round">
         <i class="icon ion-ios-person placeholder-icon"></i>
-        <input type="text" placeholder="Username" ng-model="loginDetails.username">
+        <input type="text" placeholder="Username" ng-model="signupDetails.username">
       </label>
-    </br>
-    <label class="login item item-input cinetic-round">
-    <i class="icon ion-ios-email placeholder-icon"></i>
-      <input type="text" placeholder="Email" ng-model="loginDetails.email">
-    </label>
-  </br>
-  <label class="login item item-input cinetic-round">
-  <i class="icon ion-ios-locked placeholder-icon"></i>
-    <input type="password" placeholder="Password" ng-model="loginDetails.password">
-  </label>
-<div class="footer">
-  <button class="login button button-block button-outline button-dark cinetic-round" ng-click="login(loginDetails)">Login</button>
-  <button class="login button button-block button-outline button-dark cinetic-round" ng-click="signUp(loginDetails)">Sign Up</button>
-</div>
-<!-- <div class="row row-no-padding">
+      </br>
+      <label class="login item item-input cinetic-round">
+        <i class="icon ion-ios-email placeholder-icon"></i>
+        <input type="text" placeholder="Email" ng-model="signupDetails.email">
+      </label>
+      </br>
+      <label class="login item item-input cinetic-round">
+        <i class="icon ion-ios-locked placeholder-icon"></i>
+        <input type="password" placeholder="Password" ng-model="signupDetails.password">
+      </label>
+      <button class="login button button-block button-outline button-dark cinetic-round" ng-click="signUp(signupDetails)">Sign Up</button>
+      <div class="strike">
+        <span>Already have an account?</span>
+      </div>
+      <div class="col text-center">
+        <button class="login button button-outline button-white center" ng-click="authT(authType)">Login</button>
+      </div>
+    </div>
+
+
+    <div ng-show="!authType" class="{{loginClass}}" id="container">
+      <label class="login item item-input cinetic-round">
+        <i class="icon ion-ios-email placeholder-icon"></i>
+        <input type="text" placeholder="Email" ng-model="loginDetails.email">
+      </label>
+      </br>
+      <label class="login item item-input cinetic-round">
+        <i class="icon ion-ios-locked placeholder-icon"></i>
+        <input type="password" placeholder="Password" ng-model="loginDetails.password">
+      </label>
+      <button class="login button button-block button-outline button-dark cinetic-round" ng-click="login(loginDetails)">Login</button>
+      <div class="strike">
+        <span>Don't have an account? Sing up!</span>
+      </div>
+      <div class="col text-center">
+        <button class="login button button-outline button-white center" ng-click="authT(authType)">Sing Up!</button>
+      </div>
+    </div>
+    <!-- <div class="row row-no-padding">
   <div class="col">
     <button class="button button-clear button-light">
       Reset password
@@ -35,6 +59,6 @@
   </div>
 </div>
 -->
-</div>
-</ion-content>
+    </div>
+  </ion-content>
 </ion-view>
