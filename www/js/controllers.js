@@ -216,7 +216,6 @@
               omdbFactory.deleteAPI($scope.currentUser, movie.imdbID);
               //console.log($scope.Watchlist.length);
               setTimeout(function(){
-
                 $state.go($state.current, {}, {reload: true});
               },200);
             }
@@ -245,7 +244,7 @@
         var promise = omdbFactory.searchAPI($scope.currentUser);
         promise.then(function(payload) 
         {
-          if (payload != -1 && payload[0].Search.length) {
+          if (payload != -1 && payload[0].Search.length && payload.length) {
             $ionicLoading.hide();
             // debug ajax payload
             //console.log(payload);

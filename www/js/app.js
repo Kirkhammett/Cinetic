@@ -17,6 +17,7 @@
       }
 
     $rootScope.$on('$stateChangeStart', function (event, next, nextParams, fromState) {
+      $rootScope.user = Ionic.User.current();
       var user = Ionic.User.current();
       $rootScope.enterPage('none');
       if (!user.isAuthenticated()) 

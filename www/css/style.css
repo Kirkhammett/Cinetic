@@ -3,8 +3,67 @@ a {
 	text-decoration: none;
 }
 
+
 /* OVERRIDE INPUT PLACEHOLDERS */
 /* ---------------------------- */
+ion-side-menu ion-item.item, .item-complex, .item-content, .item-radio, .item-content {
+
+	border-top: none;
+	border-bottom: none;
+	background-color: transparent !important;
+	color: white;
+	opacity: 0.8;
+	font-size: 0.95em;
+}
+
+
+ion-side-menu  {
+    height: 200px;
+    background: -moz-linear-gradient(270deg, rgba(53,159,171,1) 0%, rgba(64,193,208,1) 48%, rgba(84,235,158,1) 100%); /* ff3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(53,159,171,1)), color-stop(48%, rgba(64,193,208,1)), color-stop(100%, rgba(84,235,158,1))); /* safari4+,chrome */
+	background: -webkit-linear-gradient(270deg, rgba(53,159,171,1) 0%, rgba(64,193,208,1) 48%, rgba(84,235,158,1) 100%); /* safari5.1+,chrome10+ */
+	background: -o-linear-gradient(270deg, rgba(53,159,171,1) 0%, rgba(64,193,208,1) 48%, rgba(84,235,158,1) 100%); /* opera 11.10+ */
+	background: -ms-linear-gradient(270deg, rgba(53,159,171,1) 0%, rgba(64,193,208,1) 48%, rgba(84,235,158,1) 100%); /* ie10+ */
+	background: linear-gradient(180deg, rgba(53,159,171,1) 0%, rgba(64,193,208,1) 48%, rgba(84,235,158,1) 100%); /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#359FAB', endColorstr='#54EB9E',GradientType=0 ); /* ie6-9 */ 
+}
+
+.sidebar-icons
+{
+	font-size: 34px;
+}
+
+.item-profile
+{
+	box-shadow: 1px 24px 2px -24px rgb(206, 222, 227);
+	border-bottom: 0;
+} 
+.item-profile > div p
+{
+	color: black;
+}
+
+.item-profile > div:nth-child(2)
+{
+	font-size:1.4em;
+	color: black;
+	opacity: 0.8;
+}
+
+.item-profile > .item-avatar > img:first-child {
+	opacity: 1;
+    min-width: 100px;
+    min-height: 100px;
+    position:relative;
+    left:0px;
+    top:0px;
+  }
+
+ .cinetic-avatar
+ {
+ 	margin-bottom: 20px;
+ }
+
 
 .login input::-webkit-input-placeholder {
 	color: #fff;
@@ -57,8 +116,9 @@ a {
 
 .login.button.button-dark.button-outline.active, .login.button.button-dark.button-outline.activated
 {
-	background: #fff;
-	opacity: 0.5;
+	background: transparent;
+	border-color: #FFF;
+	opacity: 0.9;
 }
 
 

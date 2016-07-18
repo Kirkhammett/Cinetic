@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
-<script src="lib/ionic-platform-web-client/dist/ionic.io.bundle.min.js"></script>
-    <!-- cordova script (this will be a 404 during development) -->
-    <!-- Cordova is bootstrapped by ionic-platform-web-client, uncomment this if you remove ionic-platform-web-client... -->
-<!-- <script src="cordova.js"></script> -->
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title></title>
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <!-- ionic/angularjs js -->
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <script src="lib/ionic-platform-web-client/dist/ionic.io.bundle.min.js"></script>
+  <!-- cordova script (this will be a 404 during development) -->
+  <!-- Cordova is bootstrapped by ionic-platform-web-client, uncomment this if you remove ionic-platform-web-client... -->
+  <!-- <script src="cordova.js"></script> -->
+</head>
 
   <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -20,10 +20,10 @@
 
   <body ng-app="cinetic" ng-cloak="">
     <ion-side-menus enable-menu-with-back-views="false">
-  <!-- Replace the commented ion-side-menu with the one below it to disable drag on swipe -->
-  <!--<ion-side-menu-content drag-content="false"> -->
+      <!-- Replace the commented ion-side-menu with the one below it to disable drag on swipe -->
+      <!--<ion-side-menu-content drag-content="false"> -->
       <ion-side-menu-content>
-        <ion-nav-bar class="bar-positive">
+        <ion-nav-bar class="bar-balanced">
           <ion-nav-back-button></ion-nav-back-button>
           <ion-nav-buttons side="right">
             <button menu-toggle="right" class="button button-icon button-clear ion-navicon">
@@ -35,22 +35,28 @@
         <ion-nav-view> </ion-nav-view>
 
       </ion-side-menu-content>
-      <ion-side-menu side="right" style="background-color:#F6F6F6;">
-        <ion-header-bar class="bar-positive">
-          <h1 class="title">Menu </h1>
-        </ion-header-bar>
-        <ion-content padding="true" class="side-menu-right">
-          <ion-list>
-            <ion-item menu-close="" href="#/search" class="item-icon-right"> Search movies
-              <i class="icon ion-ios-search-strong"></i>
+      <ion-side-menu side="right">
+        <ion-content class="side-menu-right">
+          <ion-list class="cinetic-side-menu">
+            <ion-item class="item-profile">
+              <div class="item-avatar cinetic-avatar">
+                <img class="text-center" src="img/cineticBold.png" alt="Logo">
+              </div>
+              <div class="text-center">
+                <b>{{user.details.username}}</b>
+                <p>{{user.details.email}}</p>
+              </div>
             </ion-item>
-            <ion-item menu-close="" href="#/watchlist" class="item-icon-right"> Watchlist
-              <i class="icon ion-ios-checkmark-outline"></i>
+            <ion-item menu-close="" href="#/search" class="item-icon-left text-center"> SEARCH MOVIES
+              <i class="icon ion-ios-search-strong sidebar-icons"></i>
             </ion-item>
-            <ion-item menu-close="" href="#/about" class="item-icon-right"> About us
+            <ion-item menu-close="" href="#/watchlist" class="item-icon-left text-center"> WATCHLIST
+              <i class="icon ion-ios-film-outline"></i>
+            </ion-item>
+            <ion-item menu-close="" href="#/about" class="item-icon-left text-center"> ABOUT US
               <i class="icon ion-ios-people-outline"></i>
             </ion-item>
-            <ion-item ng-controller="homeCtrl" menu-close="" ng-click="logout()" href="#" class="item-icon-right"> Log Out
+            <ion-item ng-controller="homeCtrl" menu-close="" ng-click="logout()" href="#" class="item-icon-left text-center"> LOG OUT
               <i class="icon ion-log-out"></i>
             </ion-item>
           </ion-list>
@@ -64,4 +70,4 @@
     <script src="js/services.js"></script>
     <script src="js/constants.js"></script>
   </body>
-</html>
+  </html>

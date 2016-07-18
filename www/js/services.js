@@ -32,7 +32,7 @@
           // search movie API data for list of user movies in the DB
           $http.get("http://localhost:3000/api/movie?param=" + user)
             .success(function(data) {
-              //console.log(data);
+              console.log(data);
               deferred.resolve(data); // resolve promise with data
             })
             .error(function(msg, code) {
