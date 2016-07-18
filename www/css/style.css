@@ -130,7 +130,7 @@ ion-side-menu  {
   color:white !important;
   z-index: 1000 !important;
   position: absolute !important; 
-  bottom: 10px !important;
+  bottom: 3% !important;
   right: 6% !important;
   width: 24px !important;
   padding: 5px !important;
@@ -451,6 +451,11 @@ img.app-logo
 		width: 80vw;
 		height: auto;
 		overflow: none;
+	}
+
+    .forceTouch .popup-head 
+	{
+		margin-bottom: 10px;
 	}
 
 	@media(max-width:420px)

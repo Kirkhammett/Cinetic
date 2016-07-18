@@ -34,10 +34,9 @@
         </div>
       </ion-item>
       <br>
-
       <form id="details-form" class="list">
         <label class="item item-input">
-          <textarea placeholder="Add a Comment.."></textarea>
+          <textarea ng-model="userComment.comment" placeholder="Add a Comment..."></textarea>
         </label>
         <button id="details-save-button" style="font-weight:lighter;" class="button button-balanced button-block" ng-click="sendData(mDtl)">Add to watchlist <i class="icon ion-ios-film-outline"></i></button>
       </form>

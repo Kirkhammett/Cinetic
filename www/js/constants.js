@@ -17,7 +17,8 @@
             movie.Awards + '</span>' + '</p><p class="white-wrap"> <i class="icon ion-social-youtube"></i><a href="https://www.youtube.com/results?search_query=' + movie.Title + ' trailer" target="_blank"> View Trailer</a></p></div><div class="row"><p>IMDB Rating: <b>'
              + movie.imdbRating +
             '</b></p></div><div class="row"><p class="subdued" style="font-size: 1.24em"><span ng-bind-html="' + movie.imdbRating +
-            ' | rating"></span></p></div><div class="row"><span>(' + movie.imdbVotes + ') total votes' + '</span></div>';
+            ' | rating"></span></p></div><div class="row"><span>(' + movie.imdbVotes + ') total votes' + '</span></div></br><div ng-show="' + movie.userComment + '" class="row"><p>Your comment: ' + movie.userComment + '</p></div>';
+          //@TODO: Fix the FUCKING parse error this logs to the console
           return template;
         },
         // Spinner & Color arrays, used to randomly generate a colorful spinner which is used with $ionicLoading

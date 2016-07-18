@@ -159,8 +159,14 @@
 
      // Iterate through login errors
      $scope.authFailure = function(errors) {
+      $ionicLoading.hide();
       var fullErr = '';
-      //console.dir(errors.response);
+      console.dir(errors.response.body.error.message);
+      if(errors.response.body.error.message === "Invalid password" || errors.response.body.error.message.includes("No user"))
+      {
+        alert(errors.response.body.error.message);
+        return;
+      }
       var obj = JSON.parse(errors.response.response);
       //console.log(obj.error.message);
       for (var i=0; i < obj.error.details.length; i++) 
@@ -168,7 +174,7 @@
         //console.log(obj.error.details[i]);
         fullErr += obj.error.details[i].error_type + " " + obj.error.details[i].parameter + " ";
       }
-      console.log(fullErr);
+      alert("Login errors are: " + fullErr);
     };
 
     /*Delegates the user to a specific page sent as a parameter.
@@ -233,7 +239,7 @@
             // Condition to watch specific movie trailer
             if (index == 0) 
             {
-              window.open('https://www.youtube.com/results?search_query=' + movie.Title + ' trailer', 'location=yes');
+              window.open('https://www.youtube.com/results?search_query=' + movie.Title + ' trailer', '_system','location=yes');
             } 
             // condition to open up IMDb for specific movie
             else if (index == 1) 
@@ -302,6 +308,7 @@
   // details controller, handles what happens when we click on a list item generated from the search controller view, takes up an ID state parameter
   .controller('detailsCtrl', function($scope, $state, $stateParams, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, omdbFactory, constantsFactory) {
     $scope.currentUser = Ionic.User.current().details.username;
+    $scope.userComment = {};
     // prompt a loading screen to the user until the http call fetches the data via id
     $ionicLoading.show({
       template: "Loading data...</br> <ion-spinner icon='ripple'></ion-spinner>"
@@ -330,6 +337,7 @@
 
       $scope.sendData = function(movieObject) {
         $scope.data = {};
+        movieObject.userComment = $scope.userComment.comment;
         $scope.data.userId = $scope.currentUser;
         $scope.data.Search = movieObject;
 
