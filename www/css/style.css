@@ -3,6 +3,10 @@ a {
 	text-decoration: none;
 }
 
+.nav-bar-block, .bar 
+{
+   background-color: rgba(53,159,171,1) !important;
+}
 
 /* OVERRIDE INPUT PLACEHOLDERS */
 /* ---------------------------- */
@@ -121,6 +125,33 @@ ion-side-menu  {
 	opacity: 0.9;
 }
 
+.button-float{
+  background: rgba(53,159,171,1) !important;
+  color:white !important;
+  z-index: 1000 !important;
+  position: absolute !important; 
+  bottom: 10px !important;
+  right: 6% !important;
+  width: 24px !important;
+  padding: 5px !important;
+  border-radius: 50% !important;
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.36) !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
+  -webkit-transition: 0.2s linear !important;
+  transition: 0.2s linear !important;
+  -webkit-transition-property: -webkit-transform, all !important;
+  transition-property: transform, all !important;
+
+}
+
+.button-float.activated{
+  -webkit-transform: translate3d(0, -1px, 0)  !important;
+  transform: translate3d(0, -1px, 0) !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4) !important;
+    background: darken(#ef473a, 50%) !important;
+}
+
 
 /* END OVERRIDE BUTTONS */
 /* ---------------------------- */
@@ -215,9 +246,6 @@ ion-side-menu  {
     -ms-transform:  translate(0px,0px)  ;
   }
 }
-
-
-
 
 
 

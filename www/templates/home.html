@@ -16,7 +16,7 @@
       </br>
       <label class="login item item-input cinetic-round">
         <i class="icon ion-ios-locked placeholder-icon"></i>
-        <input type="password" placeholder="Password" ng-model="signupDetails.password">
+        <input type="password" placeholder="Password" ng-model="signupDetails.password" ng-keyup="$event.keyCode == 13 && signUp(signupDetails)">
       </label>
       <button class="login button button-block button-outline button-dark cinetic-round" ng-click="signUp(signupDetails)">Sign Up</button>
       <div class="strike">
@@ -35,7 +35,7 @@
       </br>
       <label class="login item item-input cinetic-round">
         <i class="icon ion-ios-locked placeholder-icon"></i>
-        <input type="password" placeholder="Password" ng-model="loginDetails.password">
+        <input type="password" placeholder="Password" ng-model="loginDetails.password" ng-keyup="$event.keyCode == 13 && login(loginDetails)">
       </label>
       <button class="login button button-block button-outline button-dark cinetic-round" ng-click="login(loginDetails)">Login</button>
       <div class="strike">

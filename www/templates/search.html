@@ -5,7 +5,7 @@
   </ion-nav-buttons>
   <ion-content>
     <div ng-hide="movies" class="list">
-      <label class="item item-input item-input-wrapper item-floating-label">
+      <label class="item item-input item-floating-label">
         <input type="text" ng-keyup="$event.keyCode == 13 && getMovies(SearchData)" ng-model="SearchData.title" placeholder="Enter name.." id="movie-title">
         <i ng-show="!SearchData.title" class="icon ion-search placeholder-icon"></i>
         <i ng-if="SearchData.title.length" class="icon placeholder-icon ion-android-close" on-touch="clearQuery()"></i>
@@ -23,7 +23,9 @@
       </div>
     </ion-list>
   </ion-content>
-  <div ng-show="movies" class="bar bar-footer bar-stable">
-    <button class="button button-assertive icon-right ion-chevron-up pull-right" ng-click="scrollTop()">Back to top</button>
+  <div ng-show="movies">
+     <button class="button button-float" ng-click="scrollTop()">
+        <i class="icon ion-ios-arrow-up"></i>
+      </button>
   </div>
 </ion-view>

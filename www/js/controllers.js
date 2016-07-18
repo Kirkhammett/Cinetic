@@ -18,6 +18,7 @@
   })
     // search controller, handles everything related to searching the movies the user asks for through the input
     .controller('searchCtrl', function($scope, $rootScope, $q, $http, $state, $ionicScrollDelegate, $ionicSideMenuDelegate, $ionicLoading, $timeout, omdbFactory, constantsFactory) {
+      //show the nav-bar on enter page as a block element
       $rootScope.enterPage('block');
       // two-way binding for the search strings provided in the search input
       $scope.SearchData = {};
@@ -94,7 +95,7 @@
       }
       onPageWillEnter();
       */
-      //TODO: Change this to reflect the other views
+      //No need to drag the sidemenu, home page has no sidemenu available.
       $ionicSideMenuDelegate.canDragContent(false);
       $scope.authType = false;
 
@@ -105,30 +106,40 @@
       $scope.loginDetails = {};
       $scope.signupDetails = {};
 
+      //Signs up the user with an accounts, and handles errors if any, otherwise prompts user to login form
       $scope.signUp = function(data)
       {
-        console.log(data);
+        //console.log(data);
         Ionic.Auth.signup(data).then($scope.signupSuccess, $scope.signupFailure);
       }
 
+      // Logs in the user if user exists, if not, handle respective errors
       $scope.login = function(loginDetails) {
+        $ionicLoading.show({
+          template: "Authenticating...</br></br> <ion-spinner class='spinner-balanced' icon='bubbles'></ion-spinner>"
+            //debug loader
+            //duration:5000
+          })
         Ionic.Auth.login(authProvider, authSettings, loginDetails)
         .then($scope.authSuccess, $scope.authFailure);
       };
 
+      // Logs out the user back to the home page and clears local storage for tokens
       $scope.logout = function(loginDetails) {
         console.log("Logging out!");
         Ionic.Auth.logout();
         $scope.delegateToPage('home');
       };
 
-
+      // Prompts the user for a successful sing up
       $scope.signupSuccess = function()
       {
         constantsFactory.throwWarning('SignUp');
         console.log("Successful sign up!");
+        $scope.authT();
       }
 
+      // Iterate through sign up errors
       $scope.signupFailure = function(err)
       {
         //console.log("Err count %o", err.errors[0])
@@ -139,11 +150,14 @@
         }
       }
 
+      // Authenticates user and forwards him to search page
       $scope.authSuccess = function() {
+      $ionicLoading.hide();
        console.log("Delegating to Search Page!");
        $scope.delegateToPage('search');
      } 
 
+     // Iterate through login errors
      $scope.authFailure = function(errors) {
       var fullErr = '';
       //console.dir(errors.response);
@@ -157,6 +171,10 @@
       console.log(fullErr);
     };
 
+    /*Delegates the user to a specific page sent as a parameter.
+      Back view needs to be disabled and new view should have root history, make side menu dragable again
+      and on enterPage show the navbar again as a block element.
+    */
     $scope.delegateToPage = function(stateName) {
       $ionicHistory.nextViewOptions({disableBack: true,historyRoot: true});
       $ionicSideMenuDelegate.canDragContent(true);
@@ -169,8 +187,10 @@
   // watchlist controller, handles movies or shows saved by the user
   .controller('watchlistCtrl', ['$scope', '$state', '$ionicHistory', '$ionicPopup', '$ionicSideMenuDelegate', '$ionicLoading', '$ionicActionSheet', 'omdbFactory', 'constantsFactory',
     function($scope, $state, $ionicHistory, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $ionicActionSheet, omdbFactory, constantsFactory) {
+      // Keep current user in state
       $scope.currentUser = Ionic.User.current().details.username;
       $scope.blurred = "";
+      // Pass in movie to show as a modal window and blur the background
       $scope.toggleClass = function(movie) {
         if ($scope.blurred === "") {
           $scope.blurred = "blur-background";
@@ -193,15 +213,16 @@
         });
       }
 
+      //Open up an action sheet specific to the tapped movie
       $scope.show = function(movie) {
         // Show the action sheet
         var hideSheet = $ionicActionSheet.show({
           buttons: [{
-            text: '<i class="icon ion-checkmark-circled balanced"></i> Seen'
+            text: '<i class="icon ion-social-youtube-outline balanced"></i> Watch Trailer'
           }, {
-            text: '<i class="icon ion-android-open positive"></i> View on IMDb'
+            text: '<i class="icon ion-film-marker energized"></i> View on IMDb'
           }, {
-            text: '<i class="icon ion-minus-circled assertive"></i> Dismiss'
+            text: '<i class="icon ion-trash-a assertive"></i> Remove'
           }],
           titleText: '<h4 class="subdued">' + movie.Title + " " + '(' + movie.Year + ')' + '</h4>',
           cancelText: 'Cancel',
@@ -209,12 +230,23 @@
             hideSheet();
           },
           buttonClicked: function(index) {
-            if (index == 0) {} else if (index == 1) {
+            // Condition to watch specific movie trailer
+            if (index == 0) 
+            {
+              window.open('https://www.youtube.com/results?search_query=' + movie.Title + ' trailer', 'location=yes');
+            } 
+            // condition to open up IMDb for specific movie
+            else if (index == 1) 
+            {
               window.open('http://www.imdb.com/title/' + movie.imdbID + '/', '_system', 'location=yes');
-            } else if (index == 2) 
+            } 
+            // condition to remove the movie from the DB
+            else if (index == 2) 
             {
               omdbFactory.deleteAPI($scope.currentUser, movie.imdbID);
               //console.log($scope.Watchlist.length);
+              // Searching through the DB is faster then deleting, so we add a timeout so we don't 
+              // have a deleted title show up again.
               setTimeout(function(){
                 $state.go($state.current, {}, {reload: true});
               },200);
@@ -224,6 +256,7 @@
         });
       };
 
+      //
       $scope.delegateToSearch = function() {
         $ionicHistory.nextViewOptions({
           disableBack: true,
@@ -234,6 +267,7 @@
         });
       }
 
+      // search the API for user specific movies
       $scope.searchAPI = function() {
         $ionicLoading.show({
           template: "Loading data...</br> <ion-spinner icon='ripple'></ion-spinner>"
@@ -244,19 +278,23 @@
         var promise = omdbFactory.searchAPI($scope.currentUser);
         promise.then(function(payload) 
         {
-          if (payload != -1 && payload[0].Search.length && payload.length) {
+          if (payload.length) {
             $ionicLoading.hide();
             // debug ajax payload
             //console.log(payload);
-            $scope.Watchlist = payload[0].Search;
-            //console.log("The current scope is %O", $scope.Watchlist)
-            $scope.notFound = false;
-            return;
+            if(payload[0].Search.length)
+            {
+              $scope.Watchlist = payload[0].Search;
+              //console.log("The current scope is %O", $scope.Watchlist)
+              $scope.notFound = false;
+              return;
+            }
           }
           $scope.notFound = true;
           $ionicLoading.hide();
         })
       }
+      // Fire up this function when Watchlist page is loaded
       $scope.searchAPI();
     }
     ])
